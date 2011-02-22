@@ -1,0 +1,17 @@
+Before running rake db:migrate, you need to create the database. Log in to MySQL as root, set up the following two databases and user:
+
+mysql> CREATE DATABASE volunteer_development CHARACTER SET utf8;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> CREATE USER 'volunteer'@'localhost' IDENTIFIED BY 'v0lunt33r';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> GRANT ALL ON volunteer_development.* TO 'volunteer'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE DATABASE volunteer_test CHARACTER SET utf8;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> GRANT ALL ON volunteer_test.* TO 'volunteer'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
