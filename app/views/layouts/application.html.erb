@@ -8,7 +8,6 @@
   <meta name="keywords" content="volunteer management, volunteer management software" />
   <meta name="description" content="Easily manage volunteers online for a charity or fundraising event" />
   <%= csrf_meta_tag %>
-  <%= javascript_include_tag "modernizr.custom.46792" %>
 </head>
 <body>
 <% flash.each do |key, value| %>
@@ -33,7 +32,7 @@
 	</header>
 	<nav>
 		<div style="float:right;padding:2px 15px 0 0;">
-			<form action="<%= search_path %>">
+			<form action=".">
 				<input type="search" name="q" placeholder="Enter name" /><input type="submit" class="button" value="Search">
 			</form>
 		</div>
@@ -63,6 +62,7 @@
 	</div>
 </div>
 
+ <%= javascript_include_tag "modernizr.custom.46792" %>
 <%= javascript_include_tag "jquery-1.4.4.min" %>
 <%= javascript_include_tag "application" %>
 <!--[if lt IE 9]>
