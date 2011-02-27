@@ -128,7 +128,8 @@ table tr th{
 
 .shadow_container{
    width:990px;
-   background: transparent url(../images/shadows.jpg) top center no-repeat;
+   background:  url(../images/shadows.jpg) repeat-y scroll left top ;
+   margin: 0 auto -10px;
 
 }
 
