@@ -14,6 +14,9 @@
 #
 
 class Organization < ActiveRecord::Base
+  # include this so we can get the path to this object's 'show' page
+  include Rails.application.routes.url_helpers
+  
   belongs_to :user
   belongs_to :location
   
@@ -25,6 +28,25 @@ class Organization < ActiveRecord::Base
   
   def to_param
     "#{id}-#{permalink}"
+  end
+  
+  def url
+    organization_path(self)
+  end
+  
+  # get location coordinates
+  def gmap_json
+    items = Hash.new
+    items['latitude'] = self.location.latitude.to_f
+    items['longitude'] = self.location.longitude.to_f
+    items['json_url'] = self.url + ".json"
+    items
+  end
+  
+  def to_json
+    items = self.attributes.merge(self.location.attributes)
+    items['url'] = self.url
+    items
   end
   
   private 

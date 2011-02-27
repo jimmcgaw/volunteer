@@ -1,5 +1,7 @@
 Volevent::Application.routes.draw do
 
+  get "geography/map"
+
   resources :shifts
 
   resources :events
@@ -22,6 +24,7 @@ Volevent::Application.routes.draw do
   match "/signup", :to => "users#new"
   match "/login", :to => "sessions#new"
   match "/logout", :to => "sessions#destroy"
+  match "/map", :to => "geography#map"
 
   get "pages/index"
 

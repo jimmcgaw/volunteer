@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <%= stylesheet_link_tag "styles" %>
+  <%= yield :more_stylesheets %>
   <title>Volunteer<% if @title%>: <%= @title %><% end %></title>
   
   <meta name="keywords" content="volunteer management, volunteer management software" />
@@ -62,12 +63,12 @@
 	</div>
 </div>
 
- <%= javascript_include_tag "modernizr.custom.46792" %>
+<%= javascript_include_tag "modernizr.custom.46792" %>
 <%= javascript_include_tag "jquery-1.4.4.min" %>
 <%= javascript_include_tag "application" %>
 <!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
 <![endif]-->
-
+<%= yield :more_scripts %>
 </body>
 </html>

@@ -7,6 +7,8 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @organizations }
+      format.json { render :json => @organizations.collect{|o| o.gmap_json } }
+      
     end
   end
 
@@ -18,6 +20,7 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @organization }
+      format.json { render :json => @organization.to_json }
     end
   end
 
