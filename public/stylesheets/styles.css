@@ -125,6 +125,16 @@ table tr th{
 	margin-left:15px;
 }
 
+
+.shadow_container{
+   width:990px;
+   background: transparent url(../images/shadows.jpg) top center no-repeat;
+
+}
+
+
+
+
 div#middle{
 	margin:0 auto;
 	width:960px;
