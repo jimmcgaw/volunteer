@@ -14,7 +14,7 @@ development:
   username: volunteer
   password: v0lunt33r
   host: localhost
-  socket: /tmp/mysql.sock 
+# socket: /tmp/mysql.sock 
 # socket: /var/run/mysqld/mysqld.sock
 
 
@@ -30,7 +30,7 @@ test:
   username: volunteer
   password: v0lunt33r
   host: localhost
-  socket: /tmp/mysql.sock
+# socket: /tmp/mysql.sock
 # socket: /var/run/mysqld/mysqld.sock
 
 
