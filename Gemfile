@@ -9,6 +9,8 @@ gem 'mysql2'
 gem 'paperclip'  # requires ImageMagick installed on system
 gem 'gravatar_image_tag'
 gem 'will_paginate', '~> 3.0.beta'
+gem 'oauth2'
+gem 'geokit'
 
 group :development do
   gem 'rspec-rails'
