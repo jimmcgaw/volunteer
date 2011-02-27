@@ -21,7 +21,7 @@ class Organization < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :location_id, :presence => true
   
-  before_save :generate_permalink
+  before_create :generate_permalink
   
   def to_param
     "#{id}-#{permalink}"
