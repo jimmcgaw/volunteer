@@ -25,7 +25,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new.xml
   def new
     @organization = Organization.new
-
+    @location = Location.new
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @organization }
@@ -35,21 +36,30 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1/edit
   def edit
     @organization = Organization.find(params[:id])
+    @location = @organization.location
   end
 
   # POST /organizations
   # POST /organizations.xml
   def create
+    @location = Location.new(params[:location])
+    @location.name = params[:organization][:name]
     @organization = Organization.new(params[:organization])
     @organization.user = current_user
+    @organization.location = @location
 
     respond_to do |format|
-      if @organization.save
-        format.html { redirect_to(@organization, :notice => 'Organization was successfully created.') }
-        format.xml  { render :xml => @organization, :status => :created, :location => @organization }
+      if @location.save
+        if @organization.save
+          format.html { redirect_to(@organization, :notice => 'Organization was successfully created.') }
+          format.xml  { render :xml => @organization, :status => :created, :location => @organization }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
+        end
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
       end
     end
   end
