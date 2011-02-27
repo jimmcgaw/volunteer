@@ -1,4 +1,4 @@
-Volunteer::Application.routes.draw do
+Volevent::Application.routes.draw do
 
   resources :shifts
 
