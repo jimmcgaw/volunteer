@@ -41,6 +41,7 @@ class LocationsController < ApplicationController
   # POST /locations.xml
   def create
     @location = Location.new(params[:location])
+    @location.user = current_user
 
     respond_to do |format|
       if @location.save
