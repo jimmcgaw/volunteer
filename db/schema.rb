@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227014344) do
+ActiveRecord::Schema.define(:version => 20110227065035) do
 
   create_table "coordinators", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -38,16 +38,16 @@ ActiveRecord::Schema.define(:version => 20110227014344) do
   add_index "events", ["organization_id"], :name => "fk_events_organization_id"
 
   create_table "locations", :force => true do |t|
-    t.string   "name",                                        :null => false
-    t.string   "address1",                                    :null => false
+    t.string   "name",                                       :null => false
+    t.string   "address1"
     t.string   "address2"
     t.string   "city"
     t.string   "state"
-    t.string   "postal_code",                                 :null => false
+    t.string   "postal_code",                                :null => false
     t.string   "phone_number"
-    t.decimal  "latitude",     :precision => 10, :scale => 0
-    t.decimal  "longitude",    :precision => 10, :scale => 0
-    t.integer  "user_id",                                     :null => false
+    t.decimal  "latitude",     :precision => 8, :scale => 4
+    t.decimal  "longitude",    :precision => 8, :scale => 4
+    t.integer  "user_id",                                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20110227014344) do
     t.integer  "location_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permalink",   :null => false
   end
 
   add_index "organizations", ["location_id"], :name => "fk_organizations_location_id"

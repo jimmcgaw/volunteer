@@ -8,7 +8,7 @@
 #  encrypted_password :string(255)     not null
 #  first_name         :string(255)     not null
 #  last_name          :string(255)     not null
-#  last_login         :datetime        default(2011-02-26 00:00:00 UTC)
+#  last_login         :datetime        default(2011-02-21 00:00:00 UTC)
 #  created_at         :datetime
 #  updated_at         :datetime
 #  salt               :string(255)     not null
@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   has_many :events, :through => :coordinators
+  has_many :organizations
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   

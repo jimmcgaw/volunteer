@@ -13,7 +13,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.xml
   def show
-    @organization = Organization.find(params[:id])
+    @organization = Organization.find(params[:id].to_i)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,7 +35,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1/edit
   def edit
-    @organization = Organization.find(params[:id])
+    @organization = current_user.organizations.find(params[:id].to_i)
     @location = @organization.location
   end
 
@@ -43,13 +43,14 @@ class OrganizationsController < ApplicationController
   # POST /organizations.xml
   def create
     @location = Location.new(params[:location])
-    @location.name = params[:organization][:name]
+    @location.user = current_user
     @organization = Organization.new(params[:organization])
+    @organization.name = @location.name
     @organization.user = current_user
-    @organization.location = @location
 
     respond_to do |format|
       if @location.save
+        @organization.location = @location
         if @organization.save
           format.html { redirect_to(@organization, :notice => 'Organization was successfully created.') }
           format.xml  { render :xml => @organization, :status => :created, :location => @organization }
@@ -67,12 +68,18 @@ class OrganizationsController < ApplicationController
   # PUT /organizations/1
   # PUT /organizations/1.xml
   def update
-    @organization = Organization.find(params[:id])
+    @organization = current_user.organizations.find(params[:id].to_i)
+    @location = @organization.location
 
     respond_to do |format|
       if @organization.update_attributes(params[:organization])
-        format.html { redirect_to(@organization, :notice => 'Organization was successfully updated.') }
-        format.xml  { head :ok }
+        if @location.update_attributes(params[:location])
+          format.html { redirect_to(@organization, :notice => 'Organization was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
+        end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
