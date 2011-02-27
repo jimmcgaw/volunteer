@@ -1,0 +1,31 @@
+<h1>Listing organizations</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Founded</th>
+    <th>Summary</th>
+    <th>User</th>
+    <th>Location</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @organizations.each do |organization| %>
+  <tr>
+    <td><%= organization.name %></td>
+    <td><%= organization.founded %></td>
+    <td><%= organization.summary %></td>
+    <td><%= organization.user_id %></td>
+    <td><%= organization.location_id %></td>
+    <td><%= link_to 'Show', organization %></td>
+    <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
+    <td><%= link_to 'Destroy', organization, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Organization', new_organization_path %>
