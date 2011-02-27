@@ -19,7 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 body {
 	font-size:14px;
 	line-height: 1.5em;
-	background-color:#cff;
+	background-color:#f5f6fa;
 	color:#333;
 }
 ol, ul {
@@ -135,7 +135,7 @@ div.flash{
 	width:100%;
 	padding:5px;
 	text-align:center;
-	background-color:pink;
+	background-color:black;
 	color:#333;
 }
 
@@ -150,7 +150,7 @@ a{
 
 header{
 	height:100px;
-	background-color:
+	background-color:#64acde;
 }
 
 header h1 a{
