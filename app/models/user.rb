@@ -33,6 +33,8 @@ require 'digest'
 class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
   attr_accessor :password
+
+  has_many :events, :through => :coordinators
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   

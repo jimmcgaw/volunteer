@@ -1,5 +1,11 @@
 Volunteer::Application.routes.draw do
 
+  resources :shifts
+
+  resources :events
+
+  resources :organizations
+  resources :locations
   root :to => "pages#home"
   
   get "pages/home"
