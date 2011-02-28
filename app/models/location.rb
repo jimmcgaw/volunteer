@@ -1,4 +1,24 @@
 # == Schema Information
+# Schema version: 20110227200258
+#
+# Table name: locations
+#
+#  id           :integer(4)      not null, primary key
+#  name         :string(255)     not null
+#  address1     :string(255)
+#  address2     :string(255)
+#  city         :string(255)
+#  state        :string(255)
+#  postal_code  :string(255)     not null
+#  phone_number :string(255)
+#  latitude     :decimal(8, 4)
+#  longitude    :decimal(8, 4)
+#  user_id      :integer(4)      not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
+# == Schema Information
 # Schema version: 20110227014344
 #
 # Table name: locations
@@ -21,6 +41,7 @@ include Geokit::Geocoders
 
 class Location < ActiveRecord::Base
   belongs_to :user
+  has_many :events
   
   validates :name, :presence => true
   validates :postal_code, :presence => true
@@ -37,6 +58,15 @@ class Location < ActiveRecord::Base
       address += ", " + self.address2
     end
     address
+  end
+  
+  def select_display_name
+    if self.street_address
+      "#{name} (#{street_address})"
+    else
+      "#{name} (#{postal_code})"
+    end
+    
   end
     
   private

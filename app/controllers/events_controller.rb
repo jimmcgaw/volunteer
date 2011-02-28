@@ -27,12 +27,10 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new
-    if current_user.organizations.first and current_user.organizations.first.location
-      @location = current_user.organizations.first.location
-    else
-      @location = Location.new
-    end
-
+    @organizations = current_user.organizations
+    @locations = current_user.locations
+    @location = Location.new
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }
@@ -43,21 +41,29 @@ class EventsController < ApplicationController
   def edit
     begin
       @event = current_user.events.find(params[:id])
+      @organizations = current_user.organizations
+      @locations = current_user.locations
       @location = @event.location
     rescue ActiveRecord::RecordNotFound
-      render "404"
+      render :status => 404
     end
-    
   end
 
   # POST /events
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
-
+    @organizations = current_user.organizations
+    @locations = current_user.locations
+    if @event.location.blank?
+      @location = Location.new(params[:location])
+      @location.save
+      @event.location = @location
+    end
+    
     respond_to do |format|
       if @event.save
-        @event.coordinators << current_user
+        @event.users << current_user
         format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
@@ -71,7 +77,9 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
-
+    @organizations = current_user.organizations
+    @locations = current_user.locations
+    
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110227014344
+# Schema version: 20110227200258
 #
 # Table name: organizations
 #
@@ -11,6 +11,8 @@
 #  location_id :integer(4)      not null
 #  created_at  :datetime
 #  updated_at  :datetime
+#  permalink   :string(255)     not null
+#  website     :string(255)
 #
 
 class Organization < ActiveRecord::Base
