@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <%= stylesheet_link_tag "styles" %>
   <%= yield :more_stylesheets %>
-  <title>Volunteer<% if @title%>: <%= @title %><% end %></title>
+  <title>Volunteer Event Handler<% if @title%>: <%= @title %><% end %></title>
   
   <meta name="keywords" content="volunteer management, volunteer management software" />
   <meta name="description" content="Easily manage volunteers online for a charity or fundraising event" />
@@ -28,9 +28,13 @@
 				<%= link_to "Login", login_path %>
 			<% end %>
 		</section>
-		<h1>
-			<%= link_to "Volunteer", root_path %>
-		</h1>
+		<div class="header_wrap">
+
+		   <h1>
+			   <%= link_to image_tag("../images/logo.gif"), root_path %>
+	      </h1>
+
+	   </div>   
 	</header>
 	<nav>
 		<div style="float:right;padding:2px 15px 0 0;">
@@ -44,7 +48,7 @@
 			<li><%= link_to "About", pages_about_path %></li>
 			<li><%= link_to "Contact", pages_contact_path %></li>
             <li><%= link_to "Map", geography_map_path %></li>
-			<li><%= link_to "My Events", events_path %></li>
+  	    <li><%= link_to "My Events", events_path %></li>
 		</ul>
 	</nav>
 	
@@ -60,11 +64,18 @@
 		
 		<div style="clear:both;"></div>
 	</section>
-	
-	<div style="background-color:maroon;color:white;margin-top:15px;">
+   <footer>
+   </footer>
+	<div style="background-color:#64acde;color:white;margin-top:15px;">
 		<%= debug(params) if Rails.env.development? %>
 	</div>
 </div>
+
+
+
+
+
+
 </div>
 
 <%= javascript_include_tag "modernizr.custom.46792" %>
