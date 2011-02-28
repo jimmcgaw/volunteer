@@ -43,19 +43,19 @@ class Location < ActiveRecord::Base
   
   def build_address
     addr_array = []
-    if self.address1 and self.address1 != ""
+    if self.address1.present?
       addr_array.push(self.address1)
     end
-    if self.address2 and self.address2 != ""
+    if self.address2.present?
       addr_array.push(self.address2)
     end
-    if self.city and self.city != ""
+    if self.city.present?
       addr_array.push(self.city)
     end
-    if self.state and self.state != ""
+    if self.state.present?
       addr_array.push(self.state)
     end
-    if self.postal_code and self.postal_code != ""
+    if self.postal_code.present?
       addr_array.push(self.postal_code)
     end
     addr_array.join(", ")

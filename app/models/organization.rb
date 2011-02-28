@@ -58,7 +58,4 @@ class Organization < ActiveRecord::Base
     self.permalink = name.downcase.gsub(/\s+/, '-').gsub(/[^a-zA-Z0-9-]+/, '')
   end
   
-  private 
-  
-  
 end

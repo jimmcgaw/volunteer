@@ -1,6 +1,6 @@
 <h1><%= @organization.name %></h1>
 
-<% unless @organization.founded.blank? %>
+<% if @organization.founded.present? %>
   	<strong>Founded:</strong> <%= @organization.founded_month_year %>
 <% end %>
 

@@ -18,9 +18,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	font-size:14px;
-	line-height: 1.5em;
+	line-height: 1.6em;
 	background-color:#f5f6fa;
 	color:#333;
+	font-family:Helvetica, sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -217,6 +218,11 @@ section.sidebar{
 
 section.content h1{
 	margin-bottom:15px;
+}
+
+section.content h4{
+	margin-top:15px;
+	margin-bottom:5px;
 }
 
 footer{
