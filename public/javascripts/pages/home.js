@@ -10,5 +10,5 @@ Volunteer.load_location = function(){
 };
 
 jQuery(document).ready(function(){
-	Volunteer.load_location();
+	//Volunteer.load_location();
 });
