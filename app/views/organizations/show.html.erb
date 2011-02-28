@@ -7,6 +7,13 @@
 <h4>Summary</h4>
 <%= @organization.summary %>
 
+<% unless @upcoming_events.empty? %>
+<h4>Upcoming Events</h4>
+<% for event in @upcoming_events %>
+	<%= link_to event.name, event %><br />
+<% end %>
+<% end %>
+
 <%= render :partial => 'address', :locals => { :location => @organization.location } %>
 
 <% if current_user?(@organization.user) %>

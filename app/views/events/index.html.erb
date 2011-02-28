@@ -1,5 +1,6 @@
-<h1>Listing events</h1>
+<h1>Your Events</h1>
 
+<% render :partial => "event", :collection => @events, :as => :event %>
 <table>
   <tr>
     <th>Name</th>

@@ -18,6 +18,7 @@ class OrganizationsController < ApplicationController
   def show
     begin
       @organization = Organization.find(params[:id].to_i)
+      @upcoming_events = @organization.events
         respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @organization }

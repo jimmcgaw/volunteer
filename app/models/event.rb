@@ -21,6 +21,7 @@ class Event < ActiveRecord::Base
   has_many :coordinators
   has_many :users, :through => :coordinators
   belongs_to :location
+  belongs_to :organization
   
   validates :name, :presence => true
   validates :start_date, :presence => true

@@ -55,20 +55,26 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event])
     @organizations = current_user.organizations
     @locations = current_user.locations
-    if @event.location.blank?
+    
+    if params[:event][:location_id].blank? or params[:event][:location_id].nil?
       @location = Location.new(params[:location])
-      @location.save
-      @event.location = @location
+      @location.user = current_user
     end
     
     respond_to do |format|
-      if @event.save
-        @event.users << current_user
-        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
-        format.xml  { render :xml => @event, :status => :created, :location => @event }
+      @event.location = @location
+      if @location.save
+        if @event.save
+          @event.users << current_user
+          format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
+          format.xml  { render :xml => @event, :status => :created, :location => @event }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+        end
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -79,14 +85,26 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @organizations = current_user.organizations
     @locations = current_user.locations
+    @location = @event.location
+    
+    if params[:event][:location_id].blank? or params[:event][:location_id].nil?
+      @location = Location.new(params[:location])
+      @location.user = current_user
+    end
     
     respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
-        format.xml  { head :ok }
+      @event.location = @location
+      if @location.save
+        if @event.update_attributes(params[:event])
+          format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
+          format.xml  { render :xml => @event, :status => :created, :location => @event }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+        end
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
       end
     end
   end

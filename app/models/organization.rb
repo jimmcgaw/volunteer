@@ -21,6 +21,7 @@ class Organization < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :location
+  has_many :events
   
   validates :name, :presence => true
   validates :user_id, :presence => true

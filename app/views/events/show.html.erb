@@ -1,50 +1,26 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @event.name %></h1>
+<%= @event.start_date %> to <%= @event.end_date %>
 
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
+<h4>Summary</h4>
+<%= @event.summary %>
 
-<p>
-  <b>Start date:</b>
-  <%= @event.start_date %>
-</p>
+<%= render :partial => 'address', :locals => { :location => @event.location } %>
 
-<p>
-  <b>End date:</b>
-  <%= @event.end_date %>
-</p>
+<% if @event.summary %>
+	<h4>Additional</h4>
+	<%= @event.additional %>
+<% end %>
 
-<p>
-  <b>Summary:</b>
-  <%= @event.summary %>
-</p>
+<% if @event.organization %>
+	<h4>About this Organization</h4>
+	<%= link_to @event.organization.name, @event.organization %>
+<% end %>
 
-<p>
-  <b>Additional:</b>
-  <%= @event.additional %>
-</p>
+<% if current_user?(@event.users.first) %>
+<h4>Admin</h4>
+You are the owner of this page. <%= link_to 'Edit', edit_event_path(@event) %>
+<% end %>
 
-<p>
-  <b>Show organization:</b>
-  <%= @event.show_organization %>
-</p>
-
-<p>
-  <b>Show coordinators:</b>
-  <%= @event.show_coordinators %>
-</p>
-
-<p>
-  <b>Organization:</b>
-  <%= @event.organization_id %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @event.location_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% content_for :sidebar do %>
+	<div id="map" style="float:right;width:200px;height:200px;"></div>
+<% end %> 
