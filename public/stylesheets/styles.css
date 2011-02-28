@@ -21,7 +21,7 @@ body {
 	line-height: 1.6em;
 	background-color:#f5f6fa;
 	color:#333;
-	font-family:Helvetica, sans-serif;
+	font-family:Verdana, Helvetica, sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -59,7 +59,9 @@ a img{border: 0 none;}
 .fl{float:left;}
 .fr{float:right;}
 
-h1{font-size:24px;}
+h1{font-size:14px;}
+
+
 
 header, nav, footer, section {display:block;}
 
@@ -138,14 +140,14 @@ table tr th{
 div#middle{
 	margin:0 auto;
 	width:960px;
-	background-color:white;
+	background-color:#898989;
 }
 
 div.flash{
 	width:100%;
 	padding:5px;
 	text-align:center;
-	background-color:black;
+	background-color:#64acde;
 	color:white;
 }
 
@@ -158,17 +160,24 @@ a{
 	color:#a68131;
 }
 
+.header_wrap {
+   padding-top: 21px;
+   padding-left: 15px;
+   /* background: url('../images/logo.gif') no-repeat left top; */
+}
+
 header{
-	height:100px;
-	background-color:#64acde;
+	height:75px;
+	background-color:white;
 }
 
 header h1 a{
 	text-decoration:none;
-	line-height:100px;
-	font-size:48px;
+	line-height:50px;
+	font-size:22px;
+	margin-top:15px;
 	margin-left:15px;
-	color:#4c2e46;
+	color:#64acde;
 }
 
 section.authlinks{
@@ -179,19 +188,21 @@ section.authlinks{
 nav{
 	text-align:right;
 	height:30px;
-	border-top: solid 1px #ccc;
-	border-bottom: solid 1px #ccc;
+	border-top: solid 2px #e77a3f;
+	border-bottom: solid 2px #e77a3f;
 	margin-bottom:10px;
+	background-color: #64acde;
 }
 
 nav ul li a{
 	text-decoration:none;
 	display:block;
-	padding:0 10px;
+	padding:0 10px 0 25px;
 	float:left;
 	line-height:30px;
 	font-weight:bold;
-	color:#007040;
+	/* color:#007040; */
+	color: white; 
 }
 
 nav ul li a:hover{
@@ -209,30 +220,44 @@ section.content, section.sidebar{
 section.content{
 	width:680px;
 	float:left;
+   color: white;
 }
 
 section.sidebar{
 	width:240px;
 	float:right;
+   color: white;
 }
 
 section.content h1{
 	margin-bottom:15px;
+	color:white;
 }
 
 section.content h4{
 	margin-top:15px;
 	margin-bottom:5px;
 	font-family:Verdana;
+	color:white;
+}
+
+section.content p{
+	margin-top:15px;
+	margin-bottom:5px;
+	font-family:Verdana;
+	color:white;
 }
 
 footer{
 	text-align:center;
 	font-weight:12px;
+	height: 50px;
+	background-color:#64acde;
+	border-top:2px solid #e77a3f;
 }
 
 input.button, a.button{
-	background-color:#4c2e46;
+	background-color:#64acde;
 	color:white;
 	padding:4px 10px;
 	border:0 none;
