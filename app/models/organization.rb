@@ -24,8 +24,6 @@ class Organization < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :location_id, :presence => true
   
-  before_create :generate_permalink
-  
   def to_param
     "#{id}-#{permalink}"
   end
@@ -56,7 +54,7 @@ class Organization < ActiveRecord::Base
   
   private 
   
-  def generate_permalink
+  def before_create
     self.attributes['permalink'] = name.downcase.gsub(/\s+/, '-').gsub(/[^a-zA-Z0-9-]+/, '')
   end
 end
