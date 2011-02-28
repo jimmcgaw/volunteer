@@ -1,8 +1,22 @@
 var map;
 
-Volunteer.load_map = function(){
+Volunteer.get_location = function(){
+	// ask the user if they'll share their current location with us
+	if (geo_position_js.init()){ 
+		geo_position_js.getCurrentPosition(Volunteer.load_map, Volunteer.load_map); 
+	}
+};
+
+Volunteer.load_map = function(p){
 	map = new GMap2(document.getElementById("map"));
-    map.setCenter(new GLatLng(38.6,-98), 4);
+	if (p && p.coords) {
+		// if the user shares their location through HTML5, show local map
+		map.setCenter(new GLatLng(p.coords.latitude, p.coords.longitude), 12);
+	}
+	else {
+		// otherwise, show U.S. map
+		map.setCenter(new GLatLng(38.6, -98), 4);
+	}
     map.setUIToDefault();
 	
 	Volunteer.load_points();
@@ -10,7 +24,7 @@ Volunteer.load_map = function(){
 
 Volunteer.load_points = function(){
 	jQuery.ajax({
-		url: "/organizations",
+		url: "/geography/mappoints",
 		dataType: "json",
 		type: "GET",
 		success: function(json){
@@ -26,6 +40,7 @@ Volunteer.load_points = function(){
                              dataType: 'json',
                              success: function(data){
                                  if (data){
+								 	// should make 'data' render with an in-page template
 								 	var link = '<a href="'+ data.url + '">' + data.name + '</a>';
                                     marker.openInfoWindowHtml(link);
                                  }
@@ -44,7 +59,7 @@ Volunteer.load_points = function(){
 
 jQuery(document).ready(function(){
 	if (GBrowserIsCompatible()) {
-		Volunteer.load_map();
+		Volunteer.get_location();
 	}
 	
 });

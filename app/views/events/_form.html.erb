@@ -12,41 +12,72 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label "Give your event a name:" %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :start_date %><br />
+    <%= f.label "Start time:" %><br />
     <%= f.datetime_select :start_date %>
   </div>
   <div class="field">
-    <%= f.label :end_date %><br />
+    <%= f.label "End time:" %><br />
     <%= f.datetime_select :end_date %>
   </div>
+    <%= fields_for @location do |location| %>
+  
+  <div class="field">
+    <%= location.label :name %><br />
+    <%= location.text_field :name, :placeholder => "organization name (required)" %>
+  </div>
+  <div class="field">
+    <%= location.label :address1 %><br />
+    <%= location.text_field :address1, :placeholder => "address 1" %>
+  </div>
+  <div class="field">
+    <%= location.label :address2 %><br />
+    <%= location.text_field :address2, :placeholder => "address 2" %>
+  </div>
+  <div class="field">
+    <%= location.label :city %><br />
+    <%= location.text_field :city, :placeholder => "city" %>
+  </div>
+  <div class="field">
+    <%= location.label :state %><br />
+    <%= location.text_field :state, :placeholder => "state" %>
+  </div>
+  <div class="field">
+    <%= location.label :postal_code %><br />
+    <%= location.text_field :postal_code, :placeholder => "postal code (required)" %>
+  </div>
+  <div class="field">
+    <%= location.label :phone_number %><br />
+    <%= location.text_field :phone_number, :placeholder => "phone number" %>
+  </div>
+
+  <% end %>
   <div class="field">
     <%= f.label :summary %><br />
-    <%= f.text_area :summary %>
+    <%= f.text_area :summary, :cols => 50, :rows => 5 %>
   </div>
   <div class="field">
-    <%= f.label :additional %><br />
-    <%= f.text_area :additional %>
-  </div>
-  <div class="field">
-    <%= f.label :show_organization %><br />
-    <%= f.check_box :show_organization %>
-  </div>
-  <div class="field">
-    <%= f.label :show_coordinators %><br />
-    <%= f.check_box :show_coordinators %>
+    <%= f.label "Additional (optional):" %><br />
+    <%= f.text_area :additional, :cols => 50, :rows => 5 %>
   </div>
   <div class="field">
     <%= f.label :organization_id %><br />
     <%= f.text_field :organization_id %>
   </div>
   <div class="field">
+    <%= f.check_box :show_organization %> <%= f.label "Display organization info on Event Page" %>
+  </div>
+  <div class="field">
     <%= f.label :location_id %><br />
     <%= f.text_field :location_id %>
   </div>
+  <div class="field">
+    <%= f.check_box :show_coordinators %> <%= f.label "Display my info on Event Page" %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

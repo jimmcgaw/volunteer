@@ -25,6 +25,11 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new
+    if current_user.organizations.first and current_user.organizations.first.location
+      @location = current_user.organizations.first.location
+    else
+      @location = Location.new
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +40,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @location = @event.location
   end
 
   # POST /events
@@ -44,6 +50,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        @event.coordinators << current_user
         format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else

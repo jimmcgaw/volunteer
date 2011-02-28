@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
   attr_accessor :password
 
+  has_many :coordinators
   has_many :events, :through => :coordinators
   has_many :organizations
   

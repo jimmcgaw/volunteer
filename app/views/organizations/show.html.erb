@@ -1,30 +1,24 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @organization.name %></h1>
 
-<p>
-  <b>Name:</b>
-  <%= @organization.name %>
-</p>
+<% unless @organization.founded.blank? %>
+  	<strong>Founded:</strong> <%= @organization.founded_month_year %>
+<% end %>
 
-<p>
-  <b>Founded:</b>
-  <%= @organization.founded %>
-</p>
+<h4>Summary</h4>
+<%= @organization.summary %>
 
-<p>
-  <b>Summary:</b>
-  <%= @organization.summary %>
-</p>
+<%= render :partial => 'address', :locals => { :location => @organization.location } %>
 
-<p>
-  <b>User:</b>
-  <%= @organization.user_id %>
-</p>
+<% if current_user?(@organization.user) %>
+<h4>Admin</h4>
+You are the owner of this page. <%= link_to 'Edit page', edit_organization_path(@organization) %>
+<% end %>
 
-<p>
-  <b>Location:</b>
-  <%= @organization.location_id %>
-</p>
+<% content_for :sidebar do %>
+	<div id="map" style="float:right;width:200px;height:200px;"></div>
+<% end %> 
 
-
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+<% content_for :more_scripts do %>
+	<script src="http://maps.google.com/maps?file=api&amp;v=3&amp;sensor=true&amp;key=ABQIAAAAEOHf4WI9-N6OmIfoWkVxPRTOaKyFpP-kQ50TdtmwGFAu2bterRROoaMznF3IHavMx8ZNwkvY9JGbIg" type="text/javascript"></script>
+	<%= javascript_include_tag "organizations/show" %>
+<% end %>

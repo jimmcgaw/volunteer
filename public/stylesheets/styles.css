@@ -129,13 +129,10 @@ table tr th{
 .shadow_container{
    width:990px;
    padding: 0px;
-   background: url(../images/shadows.jpg) repeat-y scroll left top;
+   background: url('../images/shadows.jpg') repeat-y scroll left top;
    margin: 0 auto ;
 
 }
-
-
-
 
 div#middle{
 	margin:0 auto;
@@ -148,7 +145,7 @@ div.flash{
 	padding:5px;
 	text-align:center;
 	background-color:black;
-	color:#333;
+	color:white;
 }
 
 div.flash input.close{

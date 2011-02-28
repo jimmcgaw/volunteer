@@ -1,14 +1,15 @@
 class OrganizationsController < ApplicationController
+  before_filter :authenticate, :except => [:index, :show, :search]
+  
   # GET /organizations
   # GET /organizations.xml
   def index
-    @organizations = Organization.all
+    @organizations = current_user.organizations
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @organizations }
-      format.json { render :json => @organizations.collect{|o| o.gmap_json } }
-      
+      format.json { render :json => @organizations }
     end
   end
 
@@ -100,5 +101,11 @@ class OrganizationsController < ApplicationController
       format.html { redirect_to(organizations_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+  
+  def authenticate
+    deny_access unless signed_in?
   end
 end

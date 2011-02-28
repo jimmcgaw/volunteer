@@ -34,6 +34,11 @@ class Organization < ActiveRecord::Base
     organization_path(self)
   end
   
+  def founded_month_year
+    founded.strftime("%B %Y")
+  end
+
+  
   # get location coordinates
   def gmap_json
     items = Hash.new
@@ -52,6 +57,6 @@ class Organization < ActiveRecord::Base
   private 
   
   def generate_permalink
-    self.permalink = name.downcase.gsub(/\s+/, '-').gsub(/[^a-zA-Z0-9-]+/, '')
+    self.attributes['permalink'] = name.downcase.gsub(/\s+/, '-').gsub(/[^a-zA-Z0-9-]+/, '')
   end
 end

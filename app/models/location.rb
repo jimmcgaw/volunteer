@@ -26,8 +26,19 @@ class Location < ActiveRecord::Base
   validates :postal_code, :presence => true
   validates :user_id, :presence => true
   
-  before_create :geocode_location
+  before_save :geocode_location
   
+  def street_address
+    address = ""
+    if self.address1 and self.address1 != ""
+      address += self.address1
+    end
+    if self.address2 and self.address2 != ""
+      address += ", " + self.address2
+    end
+    address
+  end
+    
   private
   
   def build_address

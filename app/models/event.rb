@@ -18,5 +18,6 @@
 #
 
 class Event < ActiveRecord::Base
+  has_many :coordinators
   has_many :users, :through => :coordinators
 end

@@ -24,11 +24,11 @@
   <% end %>
  
   <%= fields_for @location do |location| %>
+  
   <div class="field">
     <%= location.label :name %><br />
     <%= location.text_field :name, :placeholder => "organization name (required)" %>
   </div>
-  
   <div class="field">
     <%= location.label :address1 %><br />
     <%= location.text_field :address1, :placeholder => "address 1" %>
@@ -56,9 +56,13 @@
 
   <% end %>
   
-    <div class="field">
+  <div class="field">
     <%= f.label :founded %><br />
     <%= f.date_select :founded %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website, :placeholder => "http://yourwebsite.org" %>
   </div>
   <div class="field">
     <%= f.label :summary %><br />

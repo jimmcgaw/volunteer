@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227065035) do
+ActiveRecord::Schema.define(:version => 20110227200258) do
 
   create_table "coordinators", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20110227065035) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink",   :null => false
+    t.string   "website"
   end
 
   add_index "organizations", ["location_id"], :name => "fk_organizations_location_id"
@@ -86,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20110227065035) do
     t.string   "encrypted_password",                                    :null => false
     t.string   "first_name",                                            :null => false
     t.string   "last_name",                                             :null => false
-    t.datetime "last_login",         :default => '2011-02-24 00:00:00'
+    t.datetime "last_login",         :default => '2011-02-21 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "salt",                                                  :null => false

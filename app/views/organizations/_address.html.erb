@@ -1,0 +1,18 @@
+<h4>Contact</h4>
+<div class="vcard">
+ <div class="adr">
+  <% if @organization.website.blank? %>
+	  <div class="fn org"><%= @organization.name %></div>
+  <% else %>
+  	<%= link_to @organization.name + " website", @organization.website, :class => "fn org url", :target => "_blank" %>
+  <% end %>
+  <div class="street-address"><%= location.street_address %></div>
+  <span class="locality"><%= location.city %></span>, 
+  <span class="region"><%= location.state %></span> 
+  <span class="postal-code"><%= location.postal_code %></span></div>
+  <div class="tel">Phone: <%= location.phone_number if location.phone_number %></div>
+  <div class="geo" style="display:none;" id="geocode"> 
+	 <span class="latitude"><%= location.latitude %></span>, 
+	 <span class="longitude"><%= location.longitude %></span>
+  </div>
+</div>

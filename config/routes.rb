@@ -1,20 +1,16 @@
 Volevent::Application.routes.draw do
-
+  root :to => "pages#home"
+  get "pages/home"
+  get "pages/about"
+  get "pages/contact"
+  
   get "geography/map"
+  get "geography/mappoints"
 
   resources :shifts
-
   resources :events
-
   resources :organizations
   resources :locations
-  root :to => "pages#home"
-  
-  get "pages/home"
-
-  get "pages/about"
-
-  get "pages/contact"
   
   get "sessions/new"
   
@@ -24,7 +20,6 @@ Volevent::Application.routes.draw do
   match "/signup", :to => "users#new"
   match "/login", :to => "sessions#new"
   match "/logout", :to => "sessions#destroy"
-  match "/map", :to => "geography#map"
 
   get "pages/index"
 
