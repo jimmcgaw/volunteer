@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_filter :authenticate, :except => [:index, :show, :search]
+  before_filter :authenticate, :except => [:index, :show]
   
   # GET /organizations
   # GET /organizations.xml
@@ -16,13 +16,18 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.xml
   def show
-    @organization = Organization.find(params[:id].to_i)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @organization }
-      format.json { render :json => @organization.to_json }
+    begin
+      @organization = Organization.find(params[:id].to_i)
+        respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @organization }
+        format.json { render :json => @organization.to_json }
+      end
+    rescue ActiveRecord::RecordNotFound
+      render "public/404", :status => 404
     end
+
+    
   end
 
   # GET /organizations/new
@@ -39,8 +44,12 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1/edit
   def edit
-    @organization = current_user.organizations.find(params[:id].to_i)
-    @location = @organization.location
+    begin
+      @organization = current_user.organizations.find(params[:id].to_i)
+      @location = @organization.location
+    rescue ActiveRecord::RecordNotFound
+      render "public/404", :status => 404
+    end
   end
 
   # POST /organizations

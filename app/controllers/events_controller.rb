@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
+  before_filter :authenticate, :except => [:show]
+  
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.all
+    @events = current_user.events
 
     respond_to do |format|
       format.html # index.html.erb
@@ -39,8 +41,13 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
-    @location = @event.location
+    begin
+      @event = current_user.events.find(params[:id])
+      @location = @event.location
+    rescue ActiveRecord::RecordNotFound
+      render "404"
+    end
+    
   end
 
   # POST /events
@@ -86,5 +93,9 @@ class EventsController < ApplicationController
       format.html { redirect_to(events_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def authenticate
+    deny_access unless signed_in?
   end
 end

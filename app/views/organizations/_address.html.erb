@@ -2,7 +2,7 @@
 <div class="vcard">
  <div class="adr">
   <% if @organization.website.present? %>
-  	<%= link_to @organization.name + " website", @organization.website, :class => "fn org url", :target => "_blank" %>
+  	<%= link_to @organization.name, @organization.website, :class => "fn org url", :target => "_blank" %>
   <% else %>
 	  <div class="fn org"><%= @organization.name %></div>
   <% end %>
