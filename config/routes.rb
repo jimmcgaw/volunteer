@@ -1,12 +1,17 @@
-Volunteer::Application.routes.draw do
-
+Volevent::Application.routes.draw do
   root :to => "pages#home"
-  
   get "pages/home"
-
   get "pages/about"
-
   get "pages/contact"
+  
+  get "geography/map"
+  get "geography/orgpoints"
+  get "geography/eventpoints"
+
+  resources :shifts
+  resources :events
+  resources :organizations
+  resources :locations
   
   get "sessions/new"
   

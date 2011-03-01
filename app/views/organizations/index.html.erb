@@ -1,0 +1,16 @@
+<h1>My Organizations</h1>
+
+<p>Creating an organization lets you create a page about your organization that can be linked to from each 
+of your events pages, giving your visitors more information about you. Your organization details can also 
+be included right on your event pages.</p>
+
+<%= link_to 'Create New Organization', new_organization_path %>
+
+<br /><br />
+
+<%= render :partial => "organization", :collection => @organizations, :as => :organization %>
+
+<br />
+
+<%= link_to "Back to My Events", events_path %>
+

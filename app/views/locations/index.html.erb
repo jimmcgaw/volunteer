@@ -1,0 +1,15 @@
+<h1>My Locations</h1>
+
+<p>Locations let you store addresses for event locations so that you can reuse them for multiple events. In 
+most cases, they are created automatically for you when you add events and organizations, but you can add 
+them yourself here if you'd like.</p>
+
+<%= link_to 'Create New Location', new_location_path %>
+
+<br /><br />
+
+<%= render :partial => "location", :collection => @locations, :as => :location %>
+
+<br />
+
+<%= link_to "Back to My Events", events_path %>

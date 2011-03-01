@@ -1,0 +1,22 @@
+<h1>My Events</h1>
+
+<%= link_to 'Create New Event', new_event_path %>
+<br /><br />
+<%= render :partial => "event", :collection => @events, :as => :event %>
+
+<% content_for :sidebar do %>
+	<h4>Your Organizations</h4>
+	<% for organization in @organizations %>
+		<%= link_to organization.name, organization %><br />
+	<% end %>
+	<br />
+	<%= link_to "View All Organizations", organizations_path %>
+	<hr />
+	<h4>Your Locations</h4>
+		<% for location in @locations %>
+		<%= link_to location.name, location %><br />
+	<% end %>
+	<br />
+	<%= link_to "View All Locations", locations_path %>
+	<hr />
+<% end %>

@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <%= stylesheet_link_tag "styles" %>
-  <title>Volunteer<% if @title%>: <%= @title %><% end %></title>
+  <%= yield :more_stylesheets %>
+  <title>Volunteer Event Handler<% if @title%>: <%= @title %><% end %></title>
   
   <meta name="keywords" content="volunteer management, volunteer management software" />
   <meta name="description" content="Easily manage volunteers online for a charity or fundraising event" />
@@ -16,6 +17,7 @@
 		<input type="submit" value="X" class="close" />
 	</div>
 <% end %>
+<div class="shadow_container">
 <div id="middle">
 	<header>
 		<section class="authlinks">
@@ -26,9 +28,13 @@
 				<%= link_to "Login", login_path %>
 			<% end %>
 		</section>
-		<h1>
-			<%= link_to "Volunteer", root_path %>
-		</h1>
+		<div class="header_wrap">
+
+		   <h1>
+			   <%= link_to image_tag("../images/logo.gif"), root_path %>
+	      </h1>
+
+	   </div>   
 	</header>
 	<nav>
 		<div style="float:right;padding:2px 15px 0 0;">
@@ -41,6 +47,8 @@
 			<li><%= link_to "Home", root_path %></li>
 			<li><%= link_to "About", pages_about_path %></li>
 			<li><%= link_to "Contact", pages_contact_path %></li>
+            <li><%= link_to "Map", geography_map_path %></li>
+  	    <li><%= link_to "My Events", events_path %></li>
 		</ul>
 	</nav>
 	
@@ -56,18 +64,24 @@
 		
 		<div style="clear:both;"></div>
 	</section>
-	
-	<div style="background-color:maroon;color:white;margin-top:15px;">
+   <footer>
+   </footer>
+	<div style="background-color:#64acde;color:white;margin-top:15px;">
 		<%= debug(params) if Rails.env.development? %>
 	</div>
 </div>
 
- <%= javascript_include_tag "modernizr.custom.46792" %>
+
+
+
+
+
+</div>
+
+<%= javascript_include_tag "modernizr.custom.46792" %>
 <%= javascript_include_tag "jquery-1.4.4.min" %>
 <%= javascript_include_tag "application" %>
-<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-<![endif]-->
-
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+<%= yield :more_scripts %>
 </body>
 </html>

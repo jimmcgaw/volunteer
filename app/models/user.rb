@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110118220348
+# Schema version: 20110227014344
 #
 # Table name: users
 #
@@ -33,6 +33,11 @@ require 'digest'
 class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
   attr_accessor :password
+
+  has_many :locations
+  has_many :coordinators
+  has_many :events, :through => :coordinators
+  has_many :organizations
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   

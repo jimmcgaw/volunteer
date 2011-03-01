@@ -1,0 +1,31 @@
+<h1><%= @organization.name %></h1>
+
+<% if @organization.founded.present? %>
+  	<strong>Founded:</strong> <%= @organization.founded_month_year %>
+<% end %>
+
+<h4>Summary</h4>
+<%= @organization.summary %>
+
+<% unless @upcoming_events.empty? %>
+<h4>Upcoming Events</h4>
+<% for event in @upcoming_events %>
+	<%= link_to event.name, event %><br />
+<% end %>
+<% end %>
+
+<%= render :partial => 'address', :locals => { :location => @organization.location } %>
+
+<% if current_user?(@organization.user) %>
+<h4>Admin</h4>
+You are the owner of this page. <%= link_to 'Edit page', edit_organization_path(@organization) %>
+<% end %>
+
+<% content_for :sidebar do %>
+	<div id="map" style="float:right;width:200px;height:200px;"></div>
+<% end %> 
+
+<% content_for :more_scripts do %>
+	<script src="http://maps.google.com/maps?file=api&amp;v=3&amp;sensor=true&amp;key=ABQIAAAAEOHf4WI9-N6OmIfoWkVxPRTOaKyFpP-kQ50TdtmwGFAu2bterRROoaMznF3IHavMx8ZNwkvY9JGbIg" type="text/javascript"></script>
+	<%= javascript_include_tag "organizations/show" %>
+<% end %>

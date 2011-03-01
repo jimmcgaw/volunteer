@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Volunteer::Application.load_tasks
+Volevent::Application.load_tasks

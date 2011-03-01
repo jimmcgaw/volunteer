@@ -1,0 +1,9 @@
+<h1>Create An Event</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back To My Events', events_path %>
+
+<% content_for :more_scripts do %>
+	<%= javascript_include_tag "events/form" %>
+<% end %>
