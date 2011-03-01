@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <%= stylesheet_link_tag "styles" %>
+  <%= yield :more_stylesheets %>
+  <title>Volunteer Event Handler<% if @title%>: <%= @title %><% end %></title>
+  
+  <meta name="keywords" content="volunteer management, volunteer management software" />
+  <meta name="description" content="Easily manage volunteers online for a charity or fundraising event" />
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<% flash.each do |key, value| %>
+	<div class="flash <%= key %>" style="display:none;">
+		<%= value %>
+		<input type="submit" value="X" class="close" />
+	</div>
+<% end %>
+<div class="shadow_container">
+<div id="middle">
+	<header>
+		<section class="authlinks">
+			<% if signed_in? %>
+				<%= link_to "Logout", logout_path, :method => :delete %>
+			<% else %>
+				<%= link_to "Sign Up", signup_path %> | 
+				<%= link_to "Login", login_path %>
+			<% end %>
+		</section>
+		<div class="header_wrap">
+
+		   <h1>
+			   <%= link_to image_tag("../images/logo.gif"), root_path %>
+	      </h1>
+
+	   </div>   
+	</header>
+	<nav>
+		<div style="float:right;padding:2px 15px 0 0;">
+			<form action=".">
+				<input type="search" name="q" placeholder="Enter name" /><input type="submit" class="button" value="Search">
+			</form>
+		</div>
+		
+		<ul>
+			<li><%= link_to "Home", root_path %></li>
+			<li><%= link_to "About", pages_about_path %></li>
+			<li><%= link_to "Contact", pages_contact_path %></li>
+            <li><%= link_to "Map", geography_map_path %></li>
+  	    <li><%= link_to "My Events", events_path %></li>
+		</ul>
+	</nav>
+	
+	<section class="primary">
+	
+		<section class="sidebar">
+			<%= yield :sidebar %>
+		</section>
+		
+		<section class="content">
+			<%= yield %>
+		</section>
+		
+		<div style="clear:both;"></div>
+	</section>
+   <footer>
+   </footer>
+	<div style="background-color:#64acde;color:white;margin-top:15px;">
+		<%= debug(params) if Rails.env.development? %>
+	</div>
+</div>
+
+
+
+
+
+
+</div>
+
+<%= javascript_include_tag "modernizr.custom.46792" %>
+<%= javascript_include_tag "jquery-1.4.4.min" %>
+<%= javascript_include_tag "application" %>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+<%= yield :more_scripts %>
+</body>
+</html>

@@ -1,4 +1,6 @@
 Volevent::Application.routes.draw do
+  resources :authentications
+
   root :to => "pages#home"
   get "pages/home"
   get "pages/about"
@@ -12,6 +14,8 @@ Volevent::Application.routes.draw do
   resources :events
   resources :organizations
   resources :locations
+  
+  match '/auth/:provider/callback' => 'authentications#create'
   
   get "sessions/new"
   

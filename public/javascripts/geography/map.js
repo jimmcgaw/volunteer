@@ -41,13 +41,9 @@ Volunteer.load_events = function(){
                              success: function(data){
                                  if (data){
 								 	// should make 'data' render with an on-page template
-									var rendered = jQuery("#bubble_template").tmpl(data);
-									//alert(rendered);
-									// how do we convert rendered to an HTML string???
-									
-									// for now, just build and jam a hyperlink into the bubble
-								 	var link = '<a href="'+ data.url + '">' + data.name + '</a>';
-                                    marker.openInfoWindowHtml(link);
+									var bubble_template = jQuery("#bubble_template").template();
+									var rendered = jQuery.tmpl(bubble_template, data);
+                                    marker.openInfoWindowHtml(rendered.html());
                                  }
                              }
                     	});

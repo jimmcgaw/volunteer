@@ -53,11 +53,8 @@
   <br />
   <div class="field">
     <%= f.label :location_id, "Where will this event be held?" %><br />
-	<% unless @locations.empty? %>
     <%= f.select :location_id, options_from_collection_for_select(@locations, 'id', 'select_display_name', :selected => @location.id), :prompt => "choose an existing location"  %>
-	<br />
-	<% end %>
-	<br />
+	<br /><br />
 	<strong>Location Details:</strong><br />
 	<div id="new_location_form">
 		<%= render :partial => "events/location_form", :locals => { :location => @location } %>

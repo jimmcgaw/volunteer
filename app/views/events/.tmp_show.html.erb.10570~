@@ -6,7 +6,7 @@
 
 <%= render :partial => 'address', :locals => { :location => @event.location } %>
 
-<% if @event.additional.present? %>
+<% if @event.summary %>
 	<h4>Additional</h4>
 	<%= @event.additional %>
 <% end %>

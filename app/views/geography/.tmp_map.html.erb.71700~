@@ -2,13 +2,11 @@
 <div id="map" style="width:800px;height:400px;"></div>
 
 <script id="bubble_template" type="text/x-jquery-tmpl">
-	<div>
-	<div style="width:200px;height:80px;">
+	<div style="width:200px;height:150px;">
 		<a href="${url}">${name}</a>
-		<br /><em>${date}</em>
+		<br />${date}
 		<br />
 		${short_description}
-	</div>
 	</div>
 </script>
 

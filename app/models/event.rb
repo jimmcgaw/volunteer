@@ -53,7 +53,7 @@ class Event < ActiveRecord::Base
     items['name'] = name
     items['url'] = url
     items['short_description'] = short_description
-    items['date'] = self.start_date
+    items['date'] = self.start_date.strftime('%B %d, %Y %I:%M %p')
     if self.organization.present?
       items['organization'] = self.organization.name
     end

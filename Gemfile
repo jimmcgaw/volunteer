@@ -11,6 +11,8 @@ gem 'gravatar_image_tag'
 gem 'will_paginate', '~> 3.0.beta'
 gem 'oauth2'
 gem 'geokit'
+gem 'nifty-generators'
+gem 'omniauth'
 
 group :development do
   gem 'rspec-rails'
@@ -45,3 +47,4 @@ end
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "mocha", :group => :test

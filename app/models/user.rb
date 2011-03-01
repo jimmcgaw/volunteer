@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :coordinators
   has_many :events, :through => :coordinators
   has_many :organizations
+  has_many :authentications
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
