@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110228061330) do
+ActiveRecord::Schema.define(:version => 20110227200258) do
 
   create_table "coordinators", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20110228061330) do
     t.text     "additional"
     t.boolean  "show_organization", :default => true
     t.boolean  "show_coordinators", :default => true
-    t.integer  "organization_id"
+    t.integer  "organization_id",                     :null => false
     t.integer  "location_id",                         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
