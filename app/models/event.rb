@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110227014344
+# Schema version: 20110301051333
 #
 # Table name: events
 #
@@ -11,7 +11,7 @@
 #  additional        :text
 #  show_organization :boolean(1)      default(TRUE)
 #  show_coordinators :boolean(1)      default(TRUE)
-#  organization_id   :integer(4)      not null
+#  organization_id   :integer(4)
 #  location_id       :integer(4)      not null
 #  created_at        :datetime
 #  updated_at        :datetime

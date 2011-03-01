@@ -40,7 +40,10 @@ Volunteer.load_events = function(){
                              dataType: 'json',
                              success: function(data){
                                  if (data){
-								 	// should make 'data' render with an in-page template
+								 	// should make 'data' render with an on-page template
+									var rendered = jQuery("#bubble_template").tmpl(data);
+									//alert(rendered);
+									// how do we convert rendered to an HTML string???
 									
 									// for now, just build and jam a hyperlink into the bubble
 								 	var link = '<a href="'+ data.url + '">' + data.name + '</a>';
