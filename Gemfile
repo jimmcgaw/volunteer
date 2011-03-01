@@ -13,6 +13,7 @@ gem 'oauth2'
 gem 'geokit'
 gem 'nifty-generators'
 gem 'omniauth'
+#gem 'mongrel'
 
 group :development do
   gem 'rspec-rails'
