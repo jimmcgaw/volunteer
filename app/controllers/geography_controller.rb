@@ -2,7 +2,7 @@ class GeographyController < ApplicationController
   def map
   end
 
-  def mappoints
+  def orgpoints
     @organizations = Organization.all
     
     respond_to do |format|
@@ -12,9 +12,14 @@ class GeographyController < ApplicationController
     end
   end
   
-  def client_location
-    client_ip = request.remote_ip
-    url = "http://iplocationtools.com/ip_query.php?output=json&ip=#{client_ip}"
+  def eventpoints
+    @events = Event.all
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @events }
+      format.json { render :json => @events.collect{|e| e.gmap_json } }
+    end
   end
-
+  
 end

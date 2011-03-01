@@ -1,41 +1,15 @@
-<h1>Listing locations</h1>
+<h1>My Locations</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address1</th>
-    <th>Address2</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Postal code</th>
-    <th>Phone number</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<p>Locations let you store addresses for event locations so that you can reuse them for multiple events. In 
+most cases, they are created automatically for you when you add events and organizations, but you can add 
+them yourself here if you'd like.</p>
 
-<% @locations.each do |location| %>
-  <tr>
-    <td><%= location.name %></td>
-    <td><%= location.address1 %></td>
-    <td><%= location.address2 %></td>
-    <td><%= location.city %></td>
-    <td><%= location.state %></td>
-    <td><%= location.postal_code %></td>
-    <td><%= location.phone_number %></td>
-    <td><%= location.latitude %></td>
-    <td><%= location.longitude %></td>
-    <td><%= location.user_id %></td>
-    <td><%= link_to 'Show', location %></td>
-    <td><%= link_to 'Edit', edit_location_path(location) %></td>
-    <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= link_to 'Create New Location', new_location_path %>
+
+<br /><br />
+
+<%= render :partial => "location", :collection => @locations, :as => :location %>
 
 <br />
 
-<%= link_to 'New Location', new_location_path %>
+<%= link_to "Back to My Events", events_path %>

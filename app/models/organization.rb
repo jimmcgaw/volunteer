@@ -40,6 +40,10 @@ class Organization < ActiveRecord::Base
   def founded_month_year
     founded.strftime("%B %Y")
   end
+  
+  def short_description
+    summary.gsub(/<\/?[^>]*>/, "").split(" ")[0..15].join(" ") + "..."
+  end
 
   
   # get location coordinates

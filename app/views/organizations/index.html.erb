@@ -1,31 +1,16 @@
-<h1>Listing organizations</h1>
+<h1>My Organizations</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Founded</th>
-    <th>Summary</th>
-    <th>User</th>
-    <th>Location</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<p>Creating an organization lets you create a page about your organization that can be linked to from each 
+of your events pages, giving your visitors more information about you. Your organization details can also 
+be included right on your event pages.</p>
 
-<% @organizations.each do |organization| %>
-  <tr>
-    <td><%= organization.name %></td>
-    <td><%= organization.founded %></td>
-    <td><%= organization.summary %></td>
-    <td><%= organization.user_id %></td>
-    <td><%= organization.location_id %></td>
-    <td><%= link_to 'Show', organization %></td>
-    <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-    <td><%= link_to 'Destroy', organization, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= link_to 'Create New Organization', new_organization_path %>
+
+<br /><br />
+
+<%= render :partial => "organization", :collection => @organizations, :as => :organization %>
 
 <br />
 
-<%= link_to 'New Organization', new_organization_path %>
+<%= link_to "Back to My Events", events_path %>
+

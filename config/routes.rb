@@ -5,7 +5,8 @@ Volevent::Application.routes.draw do
   get "pages/contact"
   
   get "geography/map"
-  get "geography/mappoints"
+  get "geography/orgpoints"
+  get "geography/eventpoints"
 
   resources :shifts
   resources :events

@@ -5,10 +5,13 @@ class EventsController < ApplicationController
   # GET /events.xml
   def index
     @events = current_user.events
-
+    @organizations = current_user.organizations
+    @locations = current_user.locations
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
+      format.json  { render :json => @events }
     end
   end
 
@@ -20,6 +23,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @event }
+      format.json { render :json => @event.to_json }
     end
   end
 
@@ -96,7 +100,7 @@ class EventsController < ApplicationController
       @event.location = @location
       if @location.save
         if @event.update_attributes(params[:event])
-          format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
+          format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
           format.xml  { render :xml => @event, :status => :created, :location => @event }
         else
           format.html { render :action => "edit" }

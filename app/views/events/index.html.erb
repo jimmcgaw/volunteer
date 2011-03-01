@@ -1,40 +1,22 @@
-<h1>Your Events</h1>
+<h1>My Events</h1>
 
-<% render :partial => "event", :collection => @events, :as => :event %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Start date</th>
-    <th>End date</th>
-    <th>Summary</th>
-    <th>Additional</th>
-    <th>Show organization</th>
-    <th>Show coordinators</th>
-    <th>Organization</th>
-    <th>Location</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= link_to 'Create New Event', new_event_path %>
+<br /><br />
+<%= render :partial => "event", :collection => @events, :as => :event %>
 
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.start_date %></td>
-    <td><%= event.end_date %></td>
-    <td><%= event.summary %></td>
-    <td><%= event.additional %></td>
-    <td><%= event.show_organization %></td>
-    <td><%= event.show_coordinators %></td>
-    <td><%= event.organization_id %></td>
-    <td><%= event.location_id %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% content_for :sidebar do %>
+	<h4>Your Organizations</h4>
+	<% for organization in @organizations %>
+		<%= link_to organization.name, organization %><br />
+	<% end %>
+	<br />
+	<%= link_to "View All Organizations", organizations_path %>
+	<hr />
+	<h4>Your Locations</h4>
+		<% for location in @locations %>
+		<%= link_to location.name, location %><br />
+	<% end %>
+	<br />
+	<%= link_to "View All Locations", locations_path %>
+	<hr />
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Event', new_event_path %>

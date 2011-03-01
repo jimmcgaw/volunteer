@@ -4,13 +4,14 @@
 <script id="bubble_template" type="text/x-jquery-tmpl">
 	<div style="width:200px;height:150px;">
 		<a href="${url}">${name}</a>
+		<br />${date}
 		<br />
-		${summary}
+		${short_description}
 	</div>
 </script>
 
 <% content_for :more_scripts do %>
 	<script src="http://maps.google.com/maps?file=api&amp;v=3&amp;sensor=true&amp;key=ABQIAAAAEOHf4WI9-N6OmIfoWkVxPRTOaKyFpP-kQ50TdtmwGFAu2bterRROoaMznF3IHavMx8ZNwkvY9JGbIg" type="text/javascript"></script>
 	<%= javascript_include_tag "geo" %>
-	<%= javascript_include_tag "geography_map" %>
+	<%= javascript_include_tag "geography/map" %>
 <% end %>

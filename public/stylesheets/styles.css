@@ -140,7 +140,8 @@ table tr th{
 div#middle{
 	margin:0 auto;
 	width:960px;
-	background-color:#898989;
+	/* background-color:#898989; */
+	background-color:white;
 }
 
 div.flash{
@@ -220,32 +221,28 @@ section.content, section.sidebar{
 section.content{
 	width:680px;
 	float:left;
-   color: white;
 }
 
 section.sidebar{
 	width:240px;
 	float:right;
-   color: white;
 }
 
 section.content h1{
+	font-size:24px;
 	margin-bottom:15px;
-	color:white;
 }
 
 section.content h4{
 	margin-top:15px;
 	margin-bottom:5px;
 	font-family:Verdana;
-	color:white;
 }
 
 section.content p{
 	margin-top:15px;
 	margin-bottom:5px;
 	font-family:Verdana;
-	color:white;
 }
 
 footer{
