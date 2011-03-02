@@ -60,7 +60,9 @@ class EventsController < ApplicationController
     @organizations = current_user.organizations
     @locations = current_user.locations
     
-    if params[:event][:location_id].blank? or params[:event][:location_id].nil?
+    if params[:event][:location_id].present?
+      @location = Location.find(params[:event][:location_id])
+    else
       @location = Location.new(params[:location])
       @location.user = current_user
     end
