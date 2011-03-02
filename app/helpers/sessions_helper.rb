@@ -27,7 +27,7 @@ module SessionsHelper
   end
   
   def deny_access
-    redirect_to login_path, :notice => "Please sign in to access this page."
+    redirect_to authentications_path, :notice => "Please sign in to access this page."
   end
   
   private

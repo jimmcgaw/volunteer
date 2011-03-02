@@ -166,7 +166,10 @@ div.flash input.close{
 
 a{
 	color:#a68131;
+	text-decoration:none;
 }
+
+a:hover{text-decoration:underline;}
 
 .header_wrap {
    padding-top: 21px;
@@ -255,9 +258,20 @@ section.content p{
 footer{
 	text-align:center;
 	font-weight:12px;
-	height: 50px;
+	height:30px;
 	background-color:#64acde;
 	border-top:2px solid #e77a3f;
+}
+
+footer div{
+	margin:3px auto 0 auto;
+}
+
+footer div a{
+	font-weight:bold;
+	font-size:12px;
+	color:#D9E3D5;
+	margin-right:15px;
 }
 
 input.button, a.button{
@@ -273,5 +287,4 @@ input.button, a.button{
 div.event_bubble{
 	overflow:hidden;
 	text-overflow:ellipsis;
-	line-height:1.6em;
 }

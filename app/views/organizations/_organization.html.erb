@@ -1,7 +1,11 @@
 <div class="event" style="padding:15px;border:solid 1px #999;border-radius:10px;margin-bottom:15px;">
 	<div class="actions" style="float:right;">
 	    <%= link_to 'Edit', edit_organization_path(organization) %><br />
-	    <%= link_to 'Delete', organization, :confirm => 'Are you sure?', :method => :delete %>
+		<% if organization.in_use? %>
+			<em>Organization in use.</em>
+		<% else %>
+	    	<%= button_to 'Delete', organization, :confirm => 'Are you sure?', :method => :delete %>
+		<% end %>
 	</div>
 	<%= link_to organization.name, organization, :style => "font-weight:bold;" %>
 	<br />

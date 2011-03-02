@@ -22,15 +22,19 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :name, "Give your event a name:" %> <%= f.text_field :name, :placeholder => "event name" %>
+    <%= f.label :name, "Event Name:" %> <%= f.text_field :name, :placeholder => "event name" %>
   </div>
-  <% if @organizations %>
+  
   <div class="field">
-    <%= f.label :organization_id, "Associate this event with an organization" %> 
-	(<%= link_to "Create New Organization", new_organization_path %>)<br />
-    <%= f.select :organization_id, options_from_collection_for_select(@organizations, 'id', 'name', :selected => @event.organization_id), :prompt => "choose an organization (optional)" %> 
+    <%= f.label :organization_id, "Organization:" %> 
+	<% if @organizations %>
+	<%= f.select :organization_id, options_from_collection_for_select(@organizations, 'id', 'name', :selected => @event.organization_id), :prompt => "choose an organization (optional)" %> 
+	<br />
+	<% end %>
+	<%= link_to "Create New Organization", new_organization_path %><br />
+    
   </div>
-  <% end %>
+  
   <div class="field">
     <%= f.label :start_date, "Start time:" %><br />
     <%= f.datetime_select :start_date %>

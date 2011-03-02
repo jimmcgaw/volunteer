@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <%= stylesheet_link_tag "styles" %>
   <%= yield :more_stylesheets %>
-  <title>Volunteer Event Handler<% if @title%>: <%= @title %><% end %></title>
+  <title><% if @title%><%= @title %>: <% end %>Volunteer Event Handler</title>
   
   <meta name="keywords" content="volunteer management, volunteer management software" />
   <meta name="description" content="Easily manage volunteers online for a charity or fundraising event" />
@@ -24,7 +24,7 @@
 			<% if signed_in? %>
 				You are logged in as <%= current_user.email %>. <%= link_to "Logout", logout_path, :method => :delete %>
 			<% else %>
-				<%= link_to "Sign In", authentications_path %>
+				<%= link_to "Log In", authentications_path %>
 			<% end %>
 		</section>
 		<div class="header_wrap">
@@ -38,16 +38,17 @@
 	<nav>
 		<div style="float:right;padding:2px 15px 0 0;">
 			<form action=".">
-				<input type="search" name="q" placeholder="Enter name" /><input type="submit" class="button" value="Search">
+				<input type="search" name="q" placeholder="Enter name" /><input type="submit" value="Search">
 			</form>
 		</div>
 		
 		<ul>
 			<li><%= link_to "Home", root_path %></li>
-			<li><%= link_to "About", pages_about_path %></li>
-			<li><%= link_to "Contact", pages_contact_path %></li>
             <li><%= link_to "Map", geography_map_path %></li>
-  	    <li><%= link_to "My Events", events_path %></li>
+  	    	<li><%= link_to "My Events", events_path %></li>
+			<% unless signed_in? %>
+				<li><%= link_to "Login", authentications_path %></li>
+			<% end %>
 		</ul>
 	</nav>
 	
@@ -64,8 +65,16 @@
 		<div style="clear:both;"></div>
 	</section>
    <footer>
+   		<div>
+   		<%= link_to "About", pages_about_path %>
+		<%= link_to "Contact", pages_contact_path %>
+		<%= link_to "Privacy Policy", root_path %>
+		<%= link_to "Terms of Use", root_path %>
+		<%= link_to "Feedback", pages_contact_path %>
+		</div>
    </footer>
-	<div style="background-color:#64acde;color:white;margin-top:15px;">
+   
+	<div style="background-color:maroon;color:white;margin-top:15px;">
 		<%= debug(params) if Rails.env.development? %>
 	</div>
 </div>

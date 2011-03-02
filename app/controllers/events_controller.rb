@@ -8,6 +8,8 @@ class EventsController < ApplicationController
     @organizations = current_user.organizations
     @locations = current_user.locations
     
+    @title = "My Events"
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
@@ -19,6 +21,7 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
+    @title = @event.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,6 +38,8 @@ class EventsController < ApplicationController
     @locations = current_user.locations
     @location = Location.new
     
+    @title = "Create Event"
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }
@@ -48,6 +53,8 @@ class EventsController < ApplicationController
       @organizations = current_user.organizations
       @locations = current_user.locations
       @location = @event.location
+      
+      @title = "Editing #{@event.name}"
     rescue ActiveRecord::RecordNotFound
       render :status => 404
     end

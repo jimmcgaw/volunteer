@@ -1,8 +1,10 @@
 class LocationsController < ApplicationController
+  
+  
   # GET /locations
   # GET /locations.xml
   def index
-    @locations = Location.all
+    @locations = current_user.locations
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.xml
   def show
-    @location = Location.find(params[:id])
+    @location = current_user.locations.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,7 +63,7 @@ class LocationsController < ApplicationController
   # PUT /locations/1
   # PUT /locations/1.xml
   def update
-    @location = Location.find(params[:id])
+    @location = current_user.locations.find(params[:id])
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
@@ -77,7 +79,7 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.xml
   def destroy
-    @location = Location.find(params[:id])
+    @location = current_user.locations.find(params[:id])
     @location.destroy
 
     respond_to do |format|
