@@ -46,14 +46,18 @@ class User < ActiveRecord::Base
                     :format => { :with => email_regex },
                     :uniqueness => true
   validates :first_name, :presence => true,
-                         :length => { :maximum => 30 }
+                         :length => { :maximum => 30 },
+                         :if => :password_required?
   validates :last_name, :presence => true,
-                        :length => { :maximum => 30 }
+                        :length => { :maximum => 30 },
+                         :if => :password_required?
   validates :password, :presence => true,
                        :confirmation => true,
-                       :length => { :within => 6..40 }
+                       :length => { :within => 6..40 },
+                        :if => :password_required?
                        
   before_save :encrypt_password
+  before_create :populate_null
   
   def full_name
     "#{first_name} #{last_name}"
@@ -74,7 +78,27 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
   
+  def apply_omniauth(omniauth)
+    puts "Is email blank?" + self.email.blank?.to_s
+    puts "Oauth email :" + omniauth['user_info']['email']
+    self.email = omniauth['user_info']['email'] if email.blank?
+    self.first_name = omniauth['user_info']['first_name'] if first_name.blank?
+    self.last_name = omniauth['user_info']['last_name'] if last_name.blank?
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+  
+  def password_required?
+    authentications.empty? || !password.blank?
+  end
+  
   private
+  
+  def populate_null
+    unless password_required?
+      self.first_name = "" if self.first_name.nil?
+      self.last_name = "" if self.last_name.nil?
+    end
+  end
   
   def encrypt_password
     self.salt = make_salt if new_record?

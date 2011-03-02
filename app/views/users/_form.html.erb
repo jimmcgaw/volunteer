@@ -12,6 +12,18 @@
 	<br />
   <% end %>
   
+  <% unless @user.password_required? %>
+  	<div class="" style="">
+  		You're almost there. We just need an email address from you.
+	</div>
+  <% end %>
+ 
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email, :type => "email", :placeholder => "me@email.com" %>
+  </div>
+  
+  <% if @user.password_required? %>
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, :placeholder => "Your First Name" %>
@@ -21,10 +33,6 @@
     <%= f.text_field :last_name, :placeholder => "Your Last Name" %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email, :type => "email", :placeholder => "me@email.com" %>
-  </div>
-  <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>
@@ -32,6 +40,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+  <% end %>
   
   <div class="actions">
   	<br />
