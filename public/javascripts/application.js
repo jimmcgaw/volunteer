@@ -28,10 +28,18 @@ Volunteer.attachPlaceholder = function(input, default_text, class_name){
 // for browsers that don't support HTML5
 Volunteer.attachPlaceholders = function(){
 	if (!Modernizr.input.placeholder) {
+		/*
 		var placeholder_inputs = jQuery(document).find('input[placeholder]').each(function(index){
 			var input = jQuery(this);
 			Volunteer.attachPlaceholder(input, input.attr("placeholder"));
 		});
+		*/
+		var search_inputs = jQuery("input[type='search']");
+		var search_inputs = jQuery(document).find('input[placeholder]').each(function(index){
+			var input = jQuery(this);
+			Volunteer.attachPlaceholder(input, input.attr("placeholder"));
+		});
+
 	}
 };
 
