@@ -13,9 +13,9 @@ gem 'oauth2'
 gem 'geokit'
 gem 'nifty-generators'
 gem 'omniauth'
-gem 'mongrel', '1.2.0.pre2'
 
 group :development do
+  gem 'mongrel', '1.2.0.pre2'
   gem 'rspec-rails'
   gem 'webrat'
   gem 'annotate-models'
