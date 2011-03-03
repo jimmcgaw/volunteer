@@ -9,7 +9,9 @@ module MigrationHelpers
 
   def remove_foreign_key(from_table, from_column)
     constraint_name = "fk_#{from_table}_#{from_column}"
-    execute %{alter table #{from_table}
-              drop foreign key #{constraint_name}}
+    # PostgreSQL version - run with this line uncommented on Heroku
+    execute %{alter table #{from_table} drop constraint #{constraint_name}}
+    # MySQL version - run with this line uncommented locally
+    #execute %{alter table #{from_table} drop foreign key #{constraint_name}}
   end
 end
