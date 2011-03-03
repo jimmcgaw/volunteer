@@ -1,6 +1,6 @@
 module ApplicationHelper
   
   def logo
-    image_tag("logo1.png", :width => 102, :height => 52, :alt => "Memorial")
+    link_to image_tag("../images/logo.gif", :width => 334, :height => 38, :alt => "Volunteer Event Handler"), root_path
   end
 end
