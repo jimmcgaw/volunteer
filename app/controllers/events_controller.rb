@@ -22,12 +22,13 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @title = @event.name
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @event }
       format.json { render :json => @event.to_json }
     end
+    
   end
 
   # GET /events/new

@@ -13,6 +13,13 @@ Volevent::Application.routes.draw do
   resources :events do
     resources :shifts
   end
+  
+  resources :shifts  # do 
+  #  resources :registrations  # eventually we'll create this resource
+  #end
+  
+  match '/my_shifts' => "shifts#my_shifts"
+  
   resources :organizations
   resources :locations
   

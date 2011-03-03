@@ -6,6 +6,7 @@
   <%= yield :more_stylesheets %>
   <title><% if @title%><%= @title %> - <% end %>Volunteer Event Handler</title>
   
+  <!-- TODO: vary these by page and template, should be unique -->
   <meta name="keywords" content="volunteer management, volunteer management software" />
   <meta name="description" content="Easily manage volunteers online for a charity or fundraising event" />
   <%= csrf_meta_tag %>
@@ -46,6 +47,7 @@
 			<li><%= link_to "Home", root_path %></li>
             <li><%= link_to "Map", geography_map_path %></li>
   	    	<li><%= link_to "My Events", events_path %></li>
+			<li><%= link_to "My Shifts", my_shifts_path %></li>
 			<% unless signed_in? %>
 				<li><%= link_to "Login", authentications_path %></li>
 			<% end %>

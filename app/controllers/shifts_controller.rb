@@ -1,4 +1,6 @@
 class ShiftsController < ApplicationController
+  before_filter :authenticate, :except => [:show]
+  
   # GET /shifts
   # GET /shifts.xml
   def index
@@ -28,6 +30,7 @@ class ShiftsController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @shift = Shift.new
+    @shifts = @event.shifts
 
     respond_to do |format|
       format.html # new.html.erb
@@ -86,5 +89,9 @@ class ShiftsController < ApplicationController
       format.html { redirect_to(event_shifts_path(@shift.event)) }
       format.xml  { head :ok }
     end
+  end
+  
+  def authenticate
+    deny_access unless signed_in?
   end
 end

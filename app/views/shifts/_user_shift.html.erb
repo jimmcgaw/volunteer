@@ -1,0 +1,11 @@
+<div class="shift" style="padding:15px;border:solid 1px #999;border-radius:10px;margin-bottom:15px;">
+	<div class="actions" style="float:right;">
+	    <a href="<%= shift.google_calendar_link %>">
+	    	<img src="http://www.google.com/calendar/images/ext/gc_button6.gif" alt="Add to Google Calendar" />
+	    </a>
+	</div>
+	<%= link_to shift.name, shift.event, :style => "font-weight:bold;" %><br />
+	<em><%= shift.start.strftime('%I:%M %p') %> to <%= shift.end.strftime('%I:%M %p') %></em>
+	<br />
+	<%= shift.description %>
+</div>
