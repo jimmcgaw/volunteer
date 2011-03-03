@@ -10,15 +10,15 @@
 <% unless @upcoming_events.empty? %>
 <h4>Upcoming Events</h4>
 <% for event in @upcoming_events %>
-	<%= link_to event.name, event %> <em><%= event.start_date.strftime('%B %d, %Y %I:%M %p') %></em><br />
+	<%= link_to event.name, event %><br />
 <% end %>
 <% end %>
 
 <%= render :partial => 'address', :locals => { :location => @organization.location } %>
 
-<% if @organization.users.include?(current_user) %>
+<% if current_user?(@organization.user) %>
 <h4>Admin</h4>
-You are a manager of this page. <%= link_to 'Edit page', edit_organization_path(@organization) %>
+You are the owner of this page. <%= link_to 'Edit page', edit_organization_path(@organization) %>
 <% end %>
 
 <% content_for :sidebar do %>

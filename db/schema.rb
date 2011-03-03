@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110301213909) do
+ActiveRecord::Schema.define(:version => 20110303065427) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -62,11 +62,21 @@ ActiveRecord::Schema.define(:version => 20110301213909) do
 
   add_index "locations", ["user_id"], :name => "fk_locations_user_id"
 
+  create_table "managers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_owner",        :default => false
+  end
+
+  add_index "managers", ["organization_id"], :name => "fk_managers_organization_id"
+  add_index "managers", ["user_id"], :name => "fk_managers_user_id"
+
   create_table "organizations", :force => true do |t|
     t.string   "name",        :null => false
     t.date     "founded"
     t.text     "summary"
-    t.integer  "user_id",     :null => false
     t.integer  "location_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -75,7 +85,6 @@ ActiveRecord::Schema.define(:version => 20110301213909) do
   end
 
   add_index "organizations", ["location_id"], :name => "fk_organizations_location_id"
-  add_index "organizations", ["user_id"], :name => "fk_organizations_user_id"
 
   create_table "shifts", :force => true do |t|
     t.string   "title",                          :null => false

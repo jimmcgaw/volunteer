@@ -35,10 +35,15 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   has_many :locations
-  has_many :coordinators
-  has_many :events, :through => :coordinators
   has_many :organizations
   has_many :authentications
+  
+  has_many :coordinators
+  has_many :events, :through => :coordinators
+  
+  has_many :managers
+  has_many :organizations, :through => :managers
+  
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   

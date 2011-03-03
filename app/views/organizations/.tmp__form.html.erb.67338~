@@ -1,0 +1,75 @@
+<%= form_for(@organization) do |f| %>
+  <% if @organization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @organization.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <%= fields_for @location do |location| %>
+  
+  <div class="field">
+    <%= location.label :name %><br />
+    <%= location.text_field :name, :placeholder => "organization name (required)" %>
+  </div>
+  <div class="field">
+    <%= location.label :address1 %><br />
+    <%= location.text_field :address1, :placeholder => "address 1" %>
+  </div>
+  <div class="field">
+    <%= location.label :address2 %><br />
+    <%= location.text_field :address2, :placeholder => "address 2" %>
+  </div>
+  <div class="field">
+    <%= location.label :city %><br />
+    <%= location.text_field :city, :placeholder => "city" %>
+  </div>
+  <div class="field">
+    <%= location.label :state %><br />
+    <%= location.text_field :state, :placeholder => "state" %>
+  </div>
+  <div class="field">
+    <%= location.label :postal_code %><br />
+    <%= location.text_field :postal_code, :placeholder => "postal code (required)" %>
+  </div>
+  <div class="field">
+    <%= location.label :phone_number %><br />
+    <%= location.text_field :phone_number, :placeholder => "phone number" %>
+  </div>
+
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :founded %><br />
+    <%= f.date_select :founded %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website, :placeholder => "http://yourwebsite.org" %>
+  </div>
+  <div class="field">
+    <%= f.label :summary %><br />
+    <%= f.text_area :summary, :cols => 50, :rows => 5 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

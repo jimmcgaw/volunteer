@@ -42,7 +42,7 @@ include Geokit::Geocoders
 class Location < ActiveRecord::Base
   belongs_to :user
   has_many :events
-  has_many :organizations
+  has_many :organizations, :dependent => :destroy
   
   validates :name, :presence => true
   validates :postal_code, :presence => true

@@ -1,0 +1,34 @@
+<h1>My Events</h1>
+
+<%= link_to 'Create New Event', new_event_path %>
+<br /><br />
+<% if @events.empty? %>
+	<% if @organizations.empty? %>
+		<p>Welcome! You have no events yet. We suggest you <%= link_to "create an organization page", new_organization_path %> before you create an event.</p>
+	<% else %>
+		<p>You have no events yet. Would you like to <%= link_to "create one now", new_event_path %>?</p>
+	<% end %>
+<% else %>
+	<%= render :partial => "event", :collection => @events, :as => :event %>
+<% end %>
+
+<% content_for :sidebar do %>
+	<h4>Your Organizations (<%= link_to "View All", organizations_path %>)</h4>
+	<% if @organizations.empty? %>
+		<p><%= link_to "Create Organization", new_organization_path %></p>
+	<% else %>
+		<% for organization in @organizations %>
+			<%= link_to organization.name, organization %><br />
+		<% end %>
+	<% end %>
+	<br />
+	
+	<hr />
+	<h4>Your Locations (<%= link_to "View All", locations_path %>)</h4>
+		<% for location in @locations %>
+		<%= link_to location.name, location %><br />
+	<% end %>
+	<br />
+	
+	<hr />
+<% end %>

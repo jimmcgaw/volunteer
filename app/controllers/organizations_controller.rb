@@ -63,12 +63,13 @@ class OrganizationsController < ApplicationController
     @location.user = current_user
     @organization = Organization.new(params[:organization])
     @organization.name = @location.name
-    @organization.user = current_user
 
     respond_to do |format|
       if @location.save
         @organization.location = @location
         if @organization.save
+          # make current user the owner of this organization
+          Manager.create({:organization => @organization, :user => current_user, :is_owner => true })
           format.html { redirect_to(@organization, :notice => 'Organization was successfully created.') }
           format.xml  { render :xml => @organization, :status => :created, :location => @organization }
         else

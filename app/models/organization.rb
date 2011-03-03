@@ -19,12 +19,13 @@ class Organization < ActiveRecord::Base
   # include this so we can get the path to this object's 'show' page
   include Rails.application.routes.url_helpers
   
-  belongs_to :user
+  has_many :managers, :dependent => :destroy
+  has_many :users, :through => :managers
+  
   belongs_to :location
   has_many :events
   
   validates :name, :presence => true
-  validates :user_id, :presence => true
   validates :location_id, :presence => true
   
   before_create :generate_permalink
