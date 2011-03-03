@@ -46,16 +46,16 @@ ActiveRecord::Schema.define(:version => 20110303065427) do
   add_index "events", ["organization_id"], :name => "fk_events_organization_id"
 
   create_table "locations", :force => true do |t|
-    t.string   "name",                                       :null => false
-    t.string   "address1"
+    t.string   "name",                                        :null => false
+    t.string   "address1",                                    :null => false
     t.string   "address2"
     t.string   "city"
     t.string   "state"
-    t.string   "postal_code",                                :null => false
+    t.string   "postal_code",                                 :null => false
     t.string   "phone_number"
-    t.decimal  "latitude",     :precision => 8, :scale => 4
-    t.decimal  "longitude",    :precision => 8, :scale => 4
-    t.integer  "user_id",                                    :null => false
+    t.decimal  "latitude",     :precision => 10, :scale => 0
+    t.decimal  "longitude",    :precision => 10, :scale => 0
+    t.integer  "user_id",                                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20110303065427) do
     t.string   "encrypted_password",                                    :null => false
     t.string   "first_name",                                            :null => false
     t.string   "last_name",                                             :null => false
-    t.datetime "last_login",         :default => '2011-02-21 00:00:00'
+    t.datetime "last_login",         :default => '2011-02-24 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "salt",                                                  :null => false
