@@ -1,7 +1,7 @@
 <h4>Location</h4>
 <div class="location vcard">
  <div class="adr">
-  <div class="fn org"><%= @event.organization.name %></div>
+  <div class="fn org"><%= location.name %></div>
   <% if location.address1.present? %>
   <div class="street-address"><%= location.street_address %></div>
   <% end %>
