@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations.xml
   def index
     @organizations = current_user.organizations
-
+    @title = "My Organizations"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @organizations }
@@ -18,6 +18,7 @@ class OrganizationsController < ApplicationController
   def show
     begin
       @organization = Organization.find(params[:id].to_i)
+      @title = @organization.name
       @upcoming_events = @organization.events
         respond_to do |format|
         format.html # show.html.erb
@@ -36,6 +37,7 @@ class OrganizationsController < ApplicationController
   def new
     @organization = Organization.new
     @location = Location.new
+    @title = "Create Organization"
     
     respond_to do |format|
       format.html # new.html.erb
@@ -48,6 +50,7 @@ class OrganizationsController < ApplicationController
     begin
       @organization = current_user.organizations.find(params[:id].to_i)
       @location = @organization.location
+      @title = "Editing #{@organization.name}"
     rescue ActiveRecord::RecordNotFound
       render "public/404", :status => 404
     end

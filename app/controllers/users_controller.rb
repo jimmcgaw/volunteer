@@ -26,6 +26,15 @@ class UsersController < ApplicationController
   def new
     @title = "Sign Up"
     @user = User.new
+    
+    if session[:omniauth]
+      @user.apply_omniauth(session[:omniauth])
+    end
+    
+    if session[:user_errors]
+      @user.save
+      session[:user_errors] = nil
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,12 +51,18 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    if session[:omniauth]
+      @user.apply_omniauth(session[:omniauth])
+    end
 
     respond_to do |format|
       if @user.save
         sign_in @user
         flash[:success] = "Thanks for signing up!"
-        format.html { redirect_to root_path }
+        if session[:omniauth]
+          session[:omniauth] = nil
+        end
+        format.html { redirect_to events_path }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }

@@ -44,6 +44,10 @@ class Organization < ActiveRecord::Base
   def short_description
     summary.gsub(/<\/?[^>]*>/, "").split(" ")[0..15].join(" ") + "..."
   end
+  
+  def in_use?
+    self.events.count > 0
+  end
 
   
   # get location coordinates

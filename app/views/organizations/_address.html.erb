@@ -1,11 +1,7 @@
 <h4>Contact</h4>
 <div class="vcard">
  <div class="adr">
-  <% if @organization.website.present? %>
-  	<%= link_to @organization.name, @organization.website, :class => "fn org url", :target => "_blank" %>
-  <% else %>
-	  <div class="fn org"><%= @organization.name %></div>
-  <% end %>
+  <div class="fn org"><%= @organization.name %></div>
   <% if location.address1.present? %>
   <div class="street-address"><%= location.street_address %></div>
   <% end %>
@@ -15,6 +11,9 @@
 </div>
   <% if location.phone_number.present? %>
   	<div class="tel">Phone: <%= location.phone_number %></div>
+  <% end %>
+  <% if @organization.website.present? %>
+  	Website: <%= link_to @organization.website, @organization.website, :class => "fn org url", :target => "_blank" %>
   <% end %>
   
   <div class="geo" style="display:none;" id="geocode"> 

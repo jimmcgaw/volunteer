@@ -40,11 +40,10 @@ Volunteer.load_events = function(){
                              dataType: 'json',
                              success: function(data){
                                  if (data){
-								 	// should make 'data' render with an in-page template
-									
-									// for now, just build and jam a hyperlink into the bubble
-								 	var link = '<a href="'+ data.url + '">' + data.name + '</a>';
-                                    marker.openInfoWindowHtml(link);
+								 	// should make 'data' render with an on-page template
+									var bubble_template = jQuery("#bubble_template").template();
+									var rendered = jQuery.tmpl(bubble_template, data);
+                                    marker.openInfoWindowHtml(rendered.html());
                                  }
                              }
                     	});

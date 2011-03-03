@@ -2,16 +2,19 @@
 <div id="map" style="width:800px;height:400px;"></div>
 
 <script id="bubble_template" type="text/x-jquery-tmpl">
-	<div style="width:200px;height:150px;">
+	<div>
+	<div class="event_bubble" style="width:200px;height:80px;">
 		<a href="${url}">${name}</a>
-		<br />${date}
+		<br /><em>${date}</em>
 		<br />
-		${short_description}
+		${organization}
+	</div>
 	</div>
 </script>
 
 <% content_for :more_scripts do %>
 	<script src="http://maps.google.com/maps?file=api&amp;v=3&amp;sensor=true&amp;key=ABQIAAAAEOHf4WI9-N6OmIfoWkVxPRTOaKyFpP-kQ50TdtmwGFAu2bterRROoaMznF3IHavMx8ZNwkvY9JGbIg" type="text/javascript"></script>
 	<%= javascript_include_tag "geo" %>
+	<%= javascript_include_tag "jquery-tmpl/jquery.tmpl" %>
 	<%= javascript_include_tag "geography/map" %>
 <% end %>

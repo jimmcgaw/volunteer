@@ -42,6 +42,7 @@ include Geokit::Geocoders
 class Location < ActiveRecord::Base
   belongs_to :user
   has_many :events
+  has_many :organizations
   
   validates :name, :presence => true
   validates :postal_code, :presence => true
@@ -67,6 +68,10 @@ class Location < ActiveRecord::Base
       "#{name} (#{postal_code})"
     end
     
+  end
+  
+  def in_use?
+    (self.organizations.count + self.events.count) > 0
   end
     
   private

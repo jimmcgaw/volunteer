@@ -1,6 +1,10 @@
 <h1>Welcome to Generic Volunteer Management Site</h1>
 <p>Create a page for volunteers to sign up and keep them in the loop!</p>
-<p><%= link_to "Sign Up Now", signup_path, :class => "button" %></p>
+<% if signed_in? %>
+	<p><%= link_to "Manage My Events", events_path, :class => "button" %></p>
+<% else %>
+	<p><%= link_to "Get Started Now", authentications_path, :class => "button" %></p>
+<% end %>
 
 <% content_for :sidebar do %>
     <h2>New Events</h2>

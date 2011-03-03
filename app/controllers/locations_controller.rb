@@ -1,8 +1,10 @@
 class LocationsController < ApplicationController
+  
+  
   # GET /locations
   # GET /locations.xml
   def index
-    @locations = Location.all
+    @locations = current_user.locations
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,15 +15,18 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.xml
   def show
-    @location = Location.find(params[:id])
+    @location = current_user.locations.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @location }
-      format.json do
-        @location_form = render_to_string(:partial => "events/location_form.html.erb", :location => @location )
-        render :json => { :location_form => @location_form } 
-      end
+      format.json { render :json => @location }
+      
+      # old JSON version, keeping around for reference
+      #format.json do
+      #  @location_form = render_to_string(:partial => "events/location_form.html.erb", :location => @location )
+      #  render :json => { :location_form => @location_form } 
+      #end
     end
   end
 
@@ -61,7 +66,7 @@ class LocationsController < ApplicationController
   # PUT /locations/1
   # PUT /locations/1.xml
   def update
-    @location = Location.find(params[:id])
+    @location = current_user.locations.find(params[:id])
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
@@ -77,7 +82,7 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.xml
   def destroy
-    @location = Location.find(params[:id])
+    @location = current_user.locations.find(params[:id])
     @location.destroy
 
     respond_to do |format|

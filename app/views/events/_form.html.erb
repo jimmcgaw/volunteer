@@ -22,15 +22,19 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :name, "Give your event a name:" %> <%= f.text_field :name, :placeholder => "event name" %>
+    <%= f.label :name, "Event Name:" %> <%= f.text_field :name, :placeholder => "event name" %>
   </div>
-  <% if @organizations %>
+  
   <div class="field">
-    <%= f.label :organization_id, "Associate this event with an organization" %> 
-	(<%= link_to "Create New Organization", new_organization_path %>)<br />
-    <%= f.select :organization_id, options_from_collection_for_select(@organizations, 'id', 'name', :selected => @event.organization_id), :prompt => "choose an organization (optional)" %> 
+    <%= f.label :organization_id, "Organization:" %> 
+	<% if @organizations %>
+	<%= f.select :organization_id, options_from_collection_for_select(@organizations, 'id', 'name', :selected => @event.organization_id), :prompt => "choose an organization (optional)" %> 
+	<br />
+	<% end %>
+	<%= link_to "Create New Organization", new_organization_path %><br />
+    
   </div>
-  <% end %>
+  
   <div class="field">
     <%= f.label :start_date, "Start time:" %><br />
     <%= f.datetime_select :start_date %>
@@ -53,8 +57,11 @@
   <br />
   <div class="field">
     <%= f.label :location_id, "Where will this event be held?" %><br />
+	<% unless @locations.empty? %>
     <%= f.select :location_id, options_from_collection_for_select(@locations, 'id', 'select_display_name', :selected => @location.id), :prompt => "choose an existing location"  %>
-	<br /><br />
+	<br />
+	<% end %>
+	<br />
 	<strong>Location Details:</strong><br />
 	<div id="new_location_form">
 		<%= render :partial => "events/location_form", :locals => { :location => @location } %>

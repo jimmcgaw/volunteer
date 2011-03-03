@@ -70,7 +70,14 @@ input.placeholder{
 }
 
 div.field, div.actions{margin-bottom:10px;}
-div.field label{font-weight:bold;}
+div.field label{
+	font-weight:bold;
+	display:block;
+	float:left;
+	width:190px;
+	text-align:left;
+	margin-right:10px;
+}
 
 table tr{
 	height:30px;
@@ -159,7 +166,10 @@ div.flash input.close{
 
 a{
 	color:#a68131;
+	text-decoration:none;
 }
+
+a:hover{text-decoration:underline;}
 
 .header_wrap {
    padding-top: 21px;
@@ -248,9 +258,20 @@ section.content p{
 footer{
 	text-align:center;
 	font-weight:12px;
-	height: 50px;
+	height:30px;
 	background-color:#64acde;
 	border-top:2px solid #e77a3f;
+}
+
+footer div{
+	margin:3px auto 0 auto;
+}
+
+footer div a{
+	font-weight:bold;
+	font-size:12px;
+	color:#D9E3D5;
+	margin-right:15px;
 }
 
 input.button, a.button{
@@ -261,4 +282,9 @@ input.button, a.button{
 	cursor:pointer;
 	text-decoration:none;
 	font-weight:bold;
+}
+
+div.event_bubble{
+	overflow:hidden;
+	text-overflow:ellipsis;
 }

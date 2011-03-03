@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227200258) do
+ActiveRecord::Schema.define(:version => 20110301213909) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "coordinators", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -28,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20110227200258) do
     t.text     "additional"
     t.boolean  "show_organization", :default => true
     t.boolean  "show_coordinators", :default => true
-    t.integer  "organization_id",                     :null => false
+    t.integer  "organization_id"
     t.integer  "location_id",                         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"

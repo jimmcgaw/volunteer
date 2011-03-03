@@ -1,4 +1,6 @@
 Volevent::Application.routes.draw do
+  resources :authentications
+
   root :to => "pages#home"
   get "pages/home"
   get "pages/about"
@@ -8,10 +10,20 @@ Volevent::Application.routes.draw do
   get "geography/orgpoints"
   get "geography/eventpoints"
 
-  resources :shifts
-  resources :events
+  resources :events do
+    resources :shifts
+  end
+  
+  resources :shifts  # do 
+  #  resources :registrations  # eventually we'll create this resource
+  #end
+  
+  match '/my_shifts' => "shifts#my_shifts"
+  
   resources :organizations
   resources :locations
+  
+  match '/auth/:provider/callback' => 'authentications#create'
   
   get "sessions/new"
   
