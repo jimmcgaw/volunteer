@@ -1,7 +1,8 @@
 <div class="event" style="padding:15px;border:solid 1px #999;border-radius:10px;margin-bottom:15px;">
 	<div class="actions" style="float:right;">
 	    <%= link_to 'Edit', edit_event_path(event) %><br />
-	    <%= button_to 'Delete', event, :confirm => 'Are you sure you want to delete this event?', :method => :delete %>
+		<%= link_to "Manage Shifts", event_shifts_path(event) %>
+	    
 	</div>
 	<%= link_to event.name, event, :style => "font-weight:bold;" %><br />
 	<em><%= event.start_date.strftime('%B %d, %Y %I:%M %p') %> to <%= event.end_date.strftime('%B %d, %Y %I:%M %p') %></em>

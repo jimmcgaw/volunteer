@@ -13,7 +13,14 @@ Volunteer.load_location_form = function(location_id){
 		dataType: "json",
 		type: "GET",
 		success: function(json){
-			location_form.html(json.location_form);
+			var location = json['location'];
+			for (prop in location){
+				var name = "location_" + prop;
+				var input = jQuery("#" + name);
+				if (input){
+					input.val(location[prop]);
+				}
+			}
 		}
 	});
 };

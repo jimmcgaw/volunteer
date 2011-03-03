@@ -10,8 +10,9 @@ Volevent::Application.routes.draw do
   get "geography/orgpoints"
   get "geography/eventpoints"
 
-  resources :shifts
-  resources :events
+  resources :events do
+    resources :shifts
+  end
   resources :organizations
   resources :locations
   

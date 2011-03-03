@@ -24,6 +24,7 @@ class Event < ActiveRecord::Base
   
   has_many :coordinators
   has_many :users, :through => :coordinators
+  has_many :shifts
   belongs_to :location
   belongs_to :organization
   

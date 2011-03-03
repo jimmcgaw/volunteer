@@ -20,10 +20,13 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @location }
-      format.json do
-        @location_form = render_to_string(:partial => "events/location_form.html.erb", :location => @location )
-        render :json => { :location_form => @location_form } 
-      end
+      format.json { render :json => @location }
+      
+      # old JSON version, keeping around for reference
+      #format.json do
+      #  @location_form = render_to_string(:partial => "events/location_form.html.erb", :location => @location )
+      #  render :json => { :location_form => @location_form } 
+      #end
     end
   end
 
