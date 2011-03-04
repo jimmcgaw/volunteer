@@ -55,11 +55,23 @@ class Event < ActiveRecord::Base
     items['name'] = name
     items['url'] = url
     items['short_description'] = short_description
-    items['date'] = self.start_date.strftime('%B %d, %Y %I:%M %p')
+    items['start_date'] = self.start_date.strftime('%B %d, %Y %I:%M %p')
+    items['end_date'] = self.end_date.strftime('%B %d, %Y %I:%M %p')
     if self.organization.present?
       items['organization'] = self.organization.name
     end
     items
+  end
+  
+  # class method for getting search results.
+  def self.search(query, params)
+    if !query.to_s.strip.empty?
+      tokens = query.split.collect {|c| "%#{c.downcase}%"}
+      sql = "select e.* from events AS e WHERE #{ (["(lower(e.name) like ? or lower(e.summary) like ?)"] * tokens.size).join(" and ") } ORDER BY e.start_date DESC", *(tokens * 2).sort
+      paginate_by_sql(sql, :page => params[:page])
+    else
+      []
+    end
   end
   
   # can the user access this event? They must be either a coordinator 

@@ -135,6 +135,8 @@ table tr th{
 	margin-left:15px;
 }
 
+.hidden{display:none;}
+
 
 .shadow_container{
    width:990px;

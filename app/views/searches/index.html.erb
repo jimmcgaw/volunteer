@@ -1,0 +1,11 @@
+<h1>Search Results for "<%= @q if @q.present? %>"</h1>
+<div id="event_results">
+	<%= image_tag "loading_wheel.gif", :alt => "Loading...", :id => "loading" %>
+</div>
+
+<%= render :partial => "event_template" %>
+
+<% content_for :more_scripts do %>
+	<%= javascript_include_tag "jquery-tmpl/jquery.tmpl" %>
+	<%= javascript_include_tag "searches/index" %>
+<% end %>

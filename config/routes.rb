@@ -1,4 +1,7 @@
 Volevent::Application.routes.draw do
+  get "searches/index"
+  match "/search" => "searches#index"
+
   resources :authentications
 
   root :to => "pages#home"

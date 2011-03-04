@@ -32,14 +32,18 @@
 
 		   <h1>
 		      <%= logo %>
+			   <!--
+			   <%= link_to image_tag("../images/logo.gif"), root_path %>
+			   -->
+			   
 	      </h1>
 
 	   </div>   
 	</header>
 	<nav>
 		<div style="float:right;padding:2px 15px 0 0;">
-			<form action="<%= search_path %>">
-				<input type="search" name="q" placeholder="Event name or location" /><input type="submit" value="Search">
+			<form action=".">
+				<input type="search" name="q" placeholder="Enter name" /><input type="submit" value="Search">
 			</form>
 		</div>
 		
