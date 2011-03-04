@@ -6,8 +6,11 @@ Volunteer.load_results = function(){
 		dataType: "json",
 		success: function(json){
 			jQuery("img#loading").addClass("hidden");
-			if (json){
+			if (json.length > 1){
+				// the snappy one-liner
 				$("#result_template").tmpl(json).appendTo("#event_results");
+				
+				/* Alternative Syntax for using jQuery.template() */
 				/*
 				var result_template = jQuery("#result_template").template();
 				jQuery.each(json, function(index){
@@ -15,6 +18,9 @@ Volunteer.load_results = function(){
 					jQuery.tmpl(result_template, item).appendTo("#event_results");
 				});
 				*/
+			}
+			else{
+				jQuery("#event_results").html("No results found.");
 			}
 		},
 		error: function(){
