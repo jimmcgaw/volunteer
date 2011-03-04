@@ -4,8 +4,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def index
-    #@organizations = current_user.organizations
-    @organizations = Organization.all
+    @organizations = current_user.organizations
     @title = "My Organizations"
     respond_to do |format|
       format.html # index.html.erb
@@ -109,7 +108,7 @@ class OrganizationsController < ApplicationController
   # DELETE /organizations/1
   # DELETE /organizations/1.xml
   def destroy
-    @organization = Organization.find(params[:id])
+    @organization = current_user.organizations.find(params[:id])
     @organization.destroy
 
     respond_to do |format|
