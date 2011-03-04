@@ -4,7 +4,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def index
-    @organizations = current_user.organizations
+    #@organizations = current_user.organizations
+    @organizations = Organization.all
     @title = "My Organizations"
     respond_to do |format|
       format.html # index.html.erb
