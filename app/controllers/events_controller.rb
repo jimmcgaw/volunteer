@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
+    @shifts = @event.shifts
     @title = @event.name
     
     respond_to do |format|

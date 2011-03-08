@@ -15,11 +15,6 @@
 <!-- end class vevent -->
 </div>
 
-<% if @shifts.any? %>
-	<h4>Sign Up to Volunteer</h4>
-	<%= link_to "View Shifts", event_shifts_url(@event) %>
-<% end %>
-
 <% if @event.organization %>
 	<h4>About this Organization</h4>
 	<%= link_to @event.organization.name, @event.organization %>
