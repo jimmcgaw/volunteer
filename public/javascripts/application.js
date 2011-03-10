@@ -51,7 +51,7 @@ Volunteer.expandFlash = function(){
 };
 
 Volunteer.prepareDocument = function(){
-	Volunteer.attachPlaceholders();
+	//Volunteer.attachPlaceholders();
 	Volunteer.expandFlash();
 };
 
