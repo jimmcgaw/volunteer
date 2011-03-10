@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
   has_many :managers
   has_many :organizations, :through => :managers
   
+  has_many :registrations
+  has_many :shifts, :through => :registrations
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   

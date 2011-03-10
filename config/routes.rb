@@ -1,4 +1,6 @@
 Volevent::Application.routes.draw do
+  resources :registrations
+
   get "searches/index"
   match "/search" => "searches#index"
 

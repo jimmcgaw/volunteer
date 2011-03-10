@@ -5,7 +5,9 @@
     <th>Job Title</th>
     <th>Start</th>
     <th>End</th>
-    <th>Volunteer count</th>
+    <th>Volunteers Needed</th>
+	<th>Sign-Ups</th>
+	<th>You</th>
   </tr>
 
 <% @shifts.each do |shift| %>
@@ -14,6 +16,28 @@
     <td><%= shift.start.strftime("%I:%M %p") %></td>
     <td><%= shift.end.strftime("%I:%M %p") %></td>
     <td><%= shift.volunteer_count %></td>
+	<td><%= shift.volunteers.count %></td>
+	<td style="width:200px;">
+		<% if signed_in? %>
+			
+			<% if shift.volunteers.include?(current_user) %>
+				You're Signed Up! <%= button_to "Cancel", registration_path(current_user.registrations.find_by_shift_id(shift.id)), :method => :delete %>
+			<% else %>
+				<% if shift.is_full? %>
+					This shift is full.
+				<% else %>
+					<% form_for(Registration.new) do |f| %>
+						<%= f.hidden_field :shift_id, :value => shift.id %>
+						<%= f.submit "Sign Up" %>
+					<% end %>
+				<% end %>
+			<% end %>
+			
+		<% else %>
+			<!-- would be great if, post-registration, user is redirected back to this page somehow --> 
+			<%= link_to "Register to Volunteer", authentications_path %>
+		<% end %>
+	</td>
   </tr>
 <% end %>
 

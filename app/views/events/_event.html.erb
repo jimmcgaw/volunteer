@@ -1,7 +1,7 @@
 <div class="event" style="padding:15px;border:solid 1px #999;border-radius:10px;margin-bottom:15px;">
 	<div class="actions" style="float:right;">
 	    <%= link_to 'Edit', edit_event_path(event) %><br />
-		<%= link_to "Manage Shifts", event_shifts_path(event) %>
+		<%= link_to "Manage Shifts", "/events/#{event.id}/admin/shifts/edit" %>
 	    
 	</div>
 	<h2><%= link_to event.name, event, :style => "font-weight:bold;" %></h2>

@@ -1,0 +1,24 @@
+<h1>Listing Shifts for <%= @event.name %></h1>
+
+<table width="100%">
+  <tr>
+    <th>Job Title</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Volunteer count</th>
+  </tr>
+
+<% @shifts.each do |shift| %>
+  <tr>
+    <td><%= shift.title %></td>
+    <td><%= shift.start.strftime("%I:%M %p") %></td>
+    <td><%= shift.end.strftime("%I:%M %p") %></td>
+    <td><%= shift.volunteer_count %></td>
+  </tr>
+<% end %>
+
+</table>
+
+<br />
+
+

@@ -1,0 +1,27 @@
+<h1>Listing registrations</h1>
+
+<table width="100%">
+  <tr>
+    <th>Event</th>
+    <th>Job Title</th>
+	<th>Shifts</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @registrations.each do |registration| %>
+  <tr>
+    <td><%= link_to registration.shift.event.name, event_path(registration.shift.event) %></td>
+    <td><%= registration.shift.title %></td>
+	<td><%= link_to "View All Event Shifts", event_shifts_path(registration.shift.event) %></td>
+    <td>
+    	<a href="<%= registration.shift.google_calendar_link %>" target="_blank">
+			<img src="http://www.google.com/calendar/images/ext/gc_button6.gif" alt="Add to Google Calendar" />
+		</a>
+    </td>
+    <td><%= button_to 'Cancel', registration, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

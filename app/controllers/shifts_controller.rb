@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-  before_filter :authenticate, :except => [:show]
+  before_filter :authenticate, :except => [:show, :index]
   
   # GET /shifts
   # GET /shifts.xml
@@ -58,7 +58,7 @@ class ShiftsController < ApplicationController
 
     respond_to do |format|
       if @shift.save
-        format.html { redirect_to(event_shifts_path(@event), :notice => 'Shift was successfully created.') }
+        format.html { redirect_to("/events/#{@event.id}/admin/shifts/edit", :notice => 'Shift was successfully created.') }
         format.xml  { render :xml => @shift, :status => :created, :location => @shift }
       else
         format.html { render :action => "new" }
@@ -75,7 +75,7 @@ class ShiftsController < ApplicationController
 
     respond_to do |format|
       if @shift.update_attributes(params[:shift])
-        format.html { redirect_to(event_shifts_path(@event), :notice => 'Shift was successfully updated.') }
+        format.html { redirect_to("/events/#{@event.id}/admin/shifts/edit", :notice => 'Shift was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -91,7 +91,7 @@ class ShiftsController < ApplicationController
     @shift.destroy
 
     respond_to do |format|
-      format.html { redirect_to(event_shifts_path(@shift.event)) }
+      format.html { redirect_to("/events/#{@shift.event.id}/admin/shifts/edit") }
       format.xml  { head :ok }
     end
   end

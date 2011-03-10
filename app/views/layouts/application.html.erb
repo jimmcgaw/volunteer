@@ -47,7 +47,7 @@
 			<li><%= link_to "Home", root_path %></li>
             <li><%= link_to "Map", geography_map_path %></li>
   	    	<li><%= link_to "My Events", events_path %></li>
-			<li><%= link_to "My Shifts", "/" %></li>
+			<li><%= link_to "My Shifts", registrations_path %></li>
 			<% unless signed_in? %>
 				<li><%= link_to "Login", authentications_path %></li>
 			<% end %>
