@@ -6,6 +6,11 @@ class ShiftsController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
     @shifts = @event.shifts
+  end
+
+  def admin_index
+    @event = Event.find(params[:event_id])
+    @shifts = @event.shifts
 
     respond_to do |format|
       format.html # index.html.erb

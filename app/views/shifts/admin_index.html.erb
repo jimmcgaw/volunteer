@@ -1,19 +1,27 @@
 <h1>Listing Shifts for <%= @event.name %></h1>
 
+<%= link_to "Add Shift", new_event_shift_path %>
+<br /><br />
+
 <table width="100%">
   <tr>
     <th>Job Title</th>
     <th>Start</th>
     <th>End</th>
     <th>Volunteer count</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @shifts.each do |shift| %>
   <tr>
-    <td><%= shift.title %></td>
+    <td><%= link_to shift.title, edit_event_shift_path(shift.event, shift) %></td>
     <td><%= shift.start.strftime("%I:%M %p") %></td>
     <td><%= shift.end.strftime("%I:%M %p") %></td>
     <td><%= shift.volunteer_count %></td>
+    <td><%= link_to 'Edit', edit_event_shift_path(shift.event, shift) %></td>
+    <td><%= button_to 'Destroy', event_shift_path(shift.event, shift), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 

@@ -17,11 +17,11 @@ Volevent::Application.routes.draw do
     resources :shifts
   end
   
+  match '/events/:event_id/admin/shifts/edit' => "shifts#admin_index"
+  
   resources :shifts  # do 
   #  resources :registrations  # eventually we'll create this resource
   #end
-  
-  match '/my_shifts' => "shifts#my_shifts"
   
   resources :organizations
   resources :locations
