@@ -1,3 +1,5 @@
+require 'date'
+
 class ShiftsController < ApplicationController
   before_filter :authenticate, :except => [:show, :index]
   
@@ -21,12 +23,15 @@ class ShiftsController < ApplicationController
   # GET /shifts/1
   # GET /shifts/1.xml
   def show
-    @event = Event.find(params[:event_id])
+    if params[:event_id].present?
+      @event = Event.find(params[:event_id])
+    end
     @shift = Shift.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @shift }
+      format.json  { render :json => @shift }
     end
   end
 
@@ -37,6 +42,8 @@ class ShiftsController < ApplicationController
     @shift = Shift.new
     @shifts = @event.shifts
 
+    @shift.start = DateTime.new(2011, 3, 3, 1, 0)
+    @shift.end = DateTime.new(2011, 3, 3, 1, 0)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @shift }

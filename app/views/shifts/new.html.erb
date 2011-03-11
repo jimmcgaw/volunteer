@@ -3,4 +3,22 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', event_shifts_path %>
+<%= link_to 'Back', "/events/#{@event.id}/admin/shifts/edit" %>
+
+<% content_for :sidebar do %>
+    <% if @shifts.any? %>
+        <label for="shifts">Clone Event<label>
+        <select id="shifts">
+            <option value="0">[select shift]</option>
+            <% for shift in @shifts %>
+                <option value="<%= shift.id %>"><%= shift.title %></option>
+            <% end %>
+        </select>
+    <% end %>
+<% end %>
+
+<% content_for :more_scripts do %>
+    <%= javascript_include_tag "jquery-tmpl/jquery.tmpl" %>
+    <%= javascript_include_tag "shifts/new" %>
+<% end %>
+
