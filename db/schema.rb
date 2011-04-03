@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20110310184316) do
 
   create_table "locations", :force => true do |t|
     t.string   "name",                                       :null => false
-    t.string   "address1",                                   :null => false
+    t.string   "address1"
     t.string   "address2"
     t.string   "city"
     t.string   "state"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20110310184316) do
     t.string   "encrypted_password",                                    :null => false
     t.string   "first_name",                                            :null => false
     t.string   "last_name",                                             :null => false
-    t.datetime "last_login",         :default => '2011-02-26 00:00:00'
+    t.datetime "last_login",         :default => '2011-02-21 00:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "salt",                                                  :null => false

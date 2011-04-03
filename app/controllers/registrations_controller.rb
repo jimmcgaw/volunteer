@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  before_filter :authenticate
+  
   # GET /registrations
   # GET /registrations.xml
   def index
@@ -83,5 +85,7 @@ class RegistrationsController < ApplicationController
     end
   end
   
-  
+  def authenticate
+    deny_access unless signed_in?
+  end
 end
