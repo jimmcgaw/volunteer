@@ -12,7 +12,9 @@ class SessionsController < ApplicationController
       render "new"
     else
       sign_in user
-      redirect_to root_path
+      #adding friendly forwarding
+      #redirect_to root_path
+      redirect_back_or user
     end
   end
 

@@ -2,7 +2,9 @@ class RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.xml
   def index
-    @registrations = current_user.registrations
+    # pw added if current_user to 
+    #authenticate
+    @registrations = current_user.registrations if current_user
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,5 +85,7 @@ class RegistrationsController < ApplicationController
     end
   end
   
-  
+  def authenticate
+    deny_access unless signed_in?
+  end  
 end
