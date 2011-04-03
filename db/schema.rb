@@ -46,8 +46,9 @@ ActiveRecord::Schema.define(:version => 20110310184316) do
   add_index "events", ["organization_id"], :name => "fk_events_organization_id"
 
   create_table "locations", :force => true do |t|
-    t.string   "name",                                        :null => false
-    t.string   "address1",                                    :null => false
+
+    t.string   "name",                                       :null => false
+    t.string   "address1"
     t.string   "address2"
     t.string   "city"
     t.string   "state"
