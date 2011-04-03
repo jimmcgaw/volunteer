@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110227200258
+# Schema version: 20110310184316
 #
 # Table name: organizations
 #
@@ -7,7 +7,6 @@
 #  name        :string(255)     not null
 #  founded     :date
 #  summary     :text
-#  user_id     :integer(4)      not null
 #  location_id :integer(4)      not null
 #  created_at  :datetime
 #  updated_at  :datetime

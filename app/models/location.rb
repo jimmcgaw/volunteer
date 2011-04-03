@@ -1,18 +1,18 @@
 # == Schema Information
-# Schema version: 20110227200258
+# Schema version: 20110301213909
 #
 # Table name: locations
 #
 #  id           :integer(4)      not null, primary key
 #  name         :string(255)     not null
-#  address1     :string(255)
+#  address1     :string(255)     not null
 #  address2     :string(255)
 #  city         :string(255)
 #  state        :string(255)
 #  postal_code  :string(255)     not null
 #  phone_number :string(255)
-#  latitude     :decimal(8, 4)
-#  longitude    :decimal(8, 4)
+#  latitude     :integer(10)
+#  longitude    :integer(10)
 #  user_id      :integer(4)      not null
 #  created_at   :datetime
 #  updated_at   :datetime

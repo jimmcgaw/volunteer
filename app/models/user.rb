@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110227014344
+# Schema version: 20110301213909
 #
 # Table name: users
 #
@@ -8,7 +8,7 @@
 #  encrypted_password :string(255)     not null
 #  first_name         :string(255)     not null
 #  last_name          :string(255)     not null
-#  last_login         :datetime        default(2011-02-21 00:00:00 UTC)
+#  last_login         :datetime        default(2011-02-24 00:00:00 UTC)
 #  created_at         :datetime
 #  updated_at         :datetime
 #  salt               :string(255)     not null
