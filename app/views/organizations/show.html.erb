@@ -26,6 +26,6 @@ You are a manager of this page. <%= link_to 'Edit page', edit_organization_path(
 <% end %> 
 
 <% content_for :more_scripts do %>
-	<script src="http://maps.google.com/maps?file=api&amp;v=3&amp;sensor=true&amp;key=ABQIAAAAEOHf4WI9-N6OmIfoWkVxPRTOaKyFpP-kQ50TdtmwGFAu2bterRROoaMznF3IHavMx8ZNwkvY9JGbIg" type="text/javascript"></script>
+	<%= render :partial => "shared/googlemaps" %>
 	<%= javascript_include_tag "organizations/show" %>
 <% end %>
